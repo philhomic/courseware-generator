@@ -1,11 +1,10 @@
 <template>
   <div class='question question_radio'>
-    <div class='num'>1</div>
     <div class='inner'>
-      <div class='title' v-show='this.title' v-html='unescapeHTML(title)'></div>
-      <div class='description' v-show='this.description' v-html="unescapeHTML(description)"></div>
+      <div class='title' v-if='this.title' v-html='unescapeHTML(title)'></div>
+      <div class='description' v-if='this.description' v-html="unescapeHTML(description)"></div>
       <div class='options'>
-        <div class='option_item' v-for="(item, index) in options">
+        <div class='option-item' v-for="(item, index) in options">
           <span class="option-index">{{idxToLetter(index)}})</span>
           <div class="option-text" v-html="unescapeHTML(item.text)"></div>
         </div>
@@ -28,6 +27,9 @@
   export default {
     methods: {
       unescapeHTML: function (str) {
+        if (str === '' || str === null) {
+          return '';
+        }
         str = str.replace(/&#(x)?([\w\d]{0,5});/ig, function (full, hex, code) {
           return String.fromCharCode(parseInt(code, hex ? 16 : 10));
         });
@@ -45,8 +47,8 @@
     data () {
       return {
         type: 'radio',
-        title: '&lt;p&gt;单选题,如果让你只能选一个男歌星来听，你怎么选？&lt;/p&gt;',
-        description: '&lt;p&gt;单选题备注&lt;/p&gt; ',
+        title: '&lt;p&gt;In this section, you will hear a long conversation.&lt;/p&gt;',
+        description: '&lt;p&gt;At the end of the conversation, three or four questions will be asked about what was said. &lt;/p&gt;',
         required: true,
         goto: '',
         assess: {
@@ -63,25 +65,25 @@
           goto: '',
           display: [],
           noRandom: false,
-          text: '&lt;p&gt;选项1&lt;/p&gt; '
+          text: '&lt;p&gt;At the wedding ceremony.&lt;/p&gt; '
         }, {
           id: 'o-101-EFGH',
           goto: '',
           display: [],
           noRandom: false,
-          text: '&lt;p&gt;选项2&lt;/p&gt; '
+          text: '&lt;p&gt;At the girl’s home.&lt;/p&gt; '
         }, {
           id: 'o-2-dpDK',
           goto: '',
           display: [],
           noRandom: false,
-          text: '&lt;p&gt;选项3&lt;/p&gt; '
+          text: '&lt;p&gt;At the boy’s home.&lt;/p&gt; '
         }, {
           id: 'o-3-1Mw2',
           goto: '',
           display: [],
           noRandom: false,
-          text: '&lt;p&gt;选项4&lt;/p&gt; '
+          text: '&lt;p&gt;At the home of one of the boy’s relatives.&lt;/p&gt; '
         }],
         id: 'q-1-Ddbn'
       };
@@ -91,30 +93,26 @@
 
 <style lang='stylus' rel='stylesheet/stylus'>
   .question
-    .num
-      display: inline-block
-      height: 20px
-      padding: 0 10px
-      font-size: 12px
-      font-weight: 700
-      color: #777
-      line-height: 20px
-      background: yellow
+    width: 100%
+    max-width: 710px
+    min-width: 320px
+    margin-left: auto
+    margin-right: auto
+    padding: 10px 0
     .inner
       position: relative
-      margin-left: auto
-      margin-right: auto
-      padding-left: 10px
-      padding-right: 10px
-      max-width: 710px;
+      margin-left: 10px
+      margin-right: 10px
+      font-family: RobotoSlab, "Microsoft YaHei"
       .title
-        margin: 5px 0 8px 0
+        margin: 5px 0
         font-size: 16px
-        line-height: 1.8em
+        line-height: 28px
       .description
         position: relative
-        padding: 5px 10px
-        line-height: 1.8em
+        padding: 16px
+        margin: 15px 0
+        line-height: 20px
         font-size: 14px
         border-radius: 3px
         background-color: #eee
@@ -129,4 +127,21 @@
           border-right: 5px solid transparent
           width: 0
           height: 0
+      .options
+        line-height: 20px
+        font-size: 0
+        .option-item
+          vertical-align: top
+          padding: 12px 0
+          .option-index
+            width: 24px
+            float: left
+            font-size: 16px
+            font-family: RobotoCondensedBold
+            background-color: #eee
+            text-align: center
+          .option-text
+            margin-left: 30px
+            font-size: 16px
+
 </style>
