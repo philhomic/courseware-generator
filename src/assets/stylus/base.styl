@@ -1,0 +1,57 @@
+/*app的样式*/
+$app-bgcolor = #fff
+
+/*题目编号的样式*/
+$question-number-bgcolor = #eee
+$question-number-hr-color = #ddd
+//$question-number-text-font-family = RobotoCondensed, Calibri, Arial, "Helvetica Neue", Helvetica, sans-serif
+$question-number-text-font-family = RobotoSlab, "Microsoft YaHei", "Times New Roman", "Serif"
+
+/*问题的样式*/
+//题目文字的样式
+$question-text-font-family = RobotoSlab, "Microsoft YaHei", "Times New Roman", "Serif"
+$question-option-text-color = #000
+//题目解析的样式
+$question-explanation-text-color = #000
+$question-explanation-bgcolor = rgba(255, 216, 0, 0.5)
+$question-explanation-border = none
+//题目选项ABCD的样式
+$question-option-index-font-family = RobotoCondensedBold, Calibri, Arial, "Helvetica Neue", Helvetica, sans-serif
+$question-option-index-bgcolor = #eee
+$question-option-index-color = #000
+//ABCD选中状态下的样式
+//$question-option-index-color-selected = #000
+//$question-option-index-bgcolor-selected = #fff7cc
+$question-option-index-bgcolor-selected = #000
+$question-option-index-color-selected = #fff
+$question-option-index-bordercolor-selected = 3px solid #ffd800
+//ABCD选择正确下状态的样式
+$question-option-index-bgcolor-selected-correct = green
+$question-option-index-color-selected-correct = #fff
+$question-option-index-bordercolor-selected-correct = 3px solid #ffd800
+//ABCD选择错误下状态的样式
+$question-option-index-bgcolor-selected-wrong = red
+$question-option-index-color-selected-wrong = #fff
+$question-option-index-bordercolor-selected-wrong = 3px solid #ffd800
+
+.clearfix
+  display: inline-block
+  &:after
+    display: block
+    content: '.'
+    height: 0
+    line-height: 0
+    clear: both
+    visibility: hidden
+
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.7)
+      transform: scaleY(0.7)
+
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.5)
+      transform: scaleY(0.5)

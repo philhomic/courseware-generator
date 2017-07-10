@@ -1,0 +1,88 @@
+@import '../../assets/stylus/base'
+
+.question
+  width: 100%
+  max-width: 710px
+  min-width: 320px
+  margin-left: auto
+  margin-right: auto
+  padding: 10px 0
+  .inner
+    position: relative
+    margin-left: 10px
+    margin-right: 10px
+    font-family: $question-text-font-family
+    .title
+      margin: 5px 0
+      font-size: 16px
+      line-height: 28px
+    .description
+      margin: 10px 0
+      line-height: 20px
+      font-size: 14px
+      font-style: italic
+    .explanation
+      position: relative
+      padding: 12px
+      margin: 10px 0
+      line-height: 20px
+      font-size: 14px
+      border-radius: 3px
+      color: $question-explanation-text-color
+      background-color: $question-explanation-bgcolor
+      border: $question-explanation-border
+      &:before
+        content: ''
+        display: block
+        position: absolute
+        top: -10px
+        left: 10px
+        border-bottom: 10px solid $question-explanation-bgcolor
+        border-left: 5px solid transparent
+        border-right: 5px solid transparent
+        width: 0
+        height: 0
+    .options
+      line-height: 20px
+      font-size: 0
+      .option-item
+        box-sizing: border-box
+        vertical-align: top
+        padding: 12px 0
+        width: 100%
+        overflow: hidden
+        cursor: pointer
+        .option-index
+          width: 24px
+          height: 24px
+          border-radius: 50%
+          float: left
+          font-size: 16px
+          line-height: 24px
+          font-family: $question-option-index-font-family
+          color: $question-option-index-color
+          background-color: $question-option-index-bgcolor
+          text-align: center
+        .option-text
+          margin-left: 30px
+          padding-right: 10px
+          font-size: 16px
+          line-height: 24px
+          color: $question-option-text-color
+          img
+            max-width: 100%
+        &.selected .option-index
+          color: $question-option-index-color-selected
+          background-color: $question-option-index-bgcolor-selected
+          //border-bottom: $question-option-index-bordercolor-selected
+  &.submitted
+    .option-item.selected.correct
+      .option-index
+        background-color: $question-option-index-bgcolor-selected-correct
+        color: $question-option-index-color-selected-correct
+        //border-bottom: $question-option-index-bordercolor-selected-correct
+    .option-item.selected.wrong
+      .option-index
+        background-color: $question-option-index-bgcolor-selected-wrong
+        color: $question-option-index-color-selected-wrong
+        //border-bottom: $question-option-index-bordercolor-selected-wrong
