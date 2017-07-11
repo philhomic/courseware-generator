@@ -4,7 +4,9 @@
       <idx idx="1"></idx>
       <radio :data="radioData" colNum="2"></radio>
       <idx idx="2"></idx>
-      <radio :data="radioData"></radio>
+      <radio :data="radioData2"></radio>
+      <idx idx="3"></idx>
+     <checkbox :data="radioData3" colNum="3"></checkbox>
     </div>
     <!--<router-view></router-view>-->
   </div>
@@ -12,12 +14,14 @@
 
 <script type="text/ecmascript-6">
   import radio from '@/components/radio/radio';
+  import checkbox from '@/components/checkbox/checkbox';
   import idx from '@/components/question_number/question_number';
 
   export default {
     name: 'app',
     components: {
       radio,
+      checkbox,
       idx
     },
     created () {
@@ -61,10 +65,101 @@
           // noRandom: false,
           text: '选项D'
         }],
-        explanation: '这里是题目解析',
+        explanation: '这里是题目解析这里是题目解析这里是题目解析这里是题目解析这里是题目解析这里是题目解析这里是题目解析这里是题目解析',
         id: 'q-1-Ddbn'
       };
+      let radioData2 = {
+        type: 'radio',
+        title: '这里输入题干',
+        description: '这里是题目备注',
+        required: true,
+        goto: '',
+        assess: {
+          // type: 0,
+          // score: 1,
+          options: {
+            'o-101-EFGH2': {
+              flag: true
+            }
+          }
+        },
+        options: [{
+          id: 'o-100-ABCD2',
+          // goto: '',
+          // display: [],
+          // noRandom: false,
+          text: '&lt;p&gt;选项A&lt;/p&gt;'
+        }, {
+          id: 'o-101-EFGH2',
+          // goto: '',
+          // display: [],
+          // noRandom: false,
+          text: '选项B'
+        }, {
+          id: 'o-2-dpDK2',
+          // goto: '',
+          // display: [],
+          // noRandom: false,
+          text: '选项C'
+        }, {
+          id: 'o-3-1Mw22',
+          // goto: '',
+          // display: [],
+          // noRandom: false,
+          text: '选项D'
+        }],
+        explanation: '这里是题目解析',
+        id: 'q-1-Ddbn2'
+      };
+      let radioData3 = {
+        type: 'radio',
+        title: '这里输入题干',
+        description: '这里是题目备注',
+        required: true,
+        goto: '',
+        assess: {
+          // type: 0,
+          // score: 1,
+          options: {
+            'o-101-EFGH3': {
+              flag: true
+            },
+            'o-100-ABCD3': {
+                flag: true
+            }
+          }
+        },
+        options: [{
+          id: 'o-100-ABCD3',
+          // goto: '',
+          // display: [],
+          // noRandom: false,
+          text: '&lt;p&gt;选项A&lt;/p&gt;'
+        }, {
+          id: 'o-101-EFGH3',
+          // goto: '',
+          // display: [],
+          // noRandom: false,
+          text: '选项B'
+        }, {
+          id: 'o-2-dpDK3',
+          // goto: '',
+          // display: [],
+          // noRandom: false,
+          text: '选项C'
+        }, {
+          id: 'o-3-1Mw23',
+          // goto: '',
+          // display: [],
+          // noRandom: false,
+          text: '选项D'
+        }],
+        explanation: '这里是题目解析',
+        id: 'q-1-Ddbn3'
+      };
       this.radioData = radioData;
+      this.radioData2 = radioData2;
+      this.radioData3 = radioData3;
     }
   };
 </script>

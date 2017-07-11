@@ -5,8 +5,8 @@
             <div class='title' v-if='data.title' v-html='unescapeHTML(data.title)'></div>
             <div class='description' v-if='data.description' v-html="unescapeHTML(data.description)"></div>
             <div class='options' :id='data.id'>
-                <div class='option-item' v-for="(item, index) in data.options" ref='optionItems' @click="selectOption(item.id)" :class="{'selected': isSelected(item.id), 'right-answer': submitted && selectedId !== '' && selectCorrect(data, item.id), 'correct': submitted && isSelected(item.id) && selectCorrect(data, item.id), 'wrong': submitted && isSelected(item.id) && !selectCorrect(data, item.id)}">
-                  <input class="checkbox" type="radio" :id="item.id" :name="data.id">
+                <div class='option-item' v-for="(item, index) in data.options" ref='optionItems' @click.stop.prevent="selectOption(item.id)" :class="{'selected': isSelected(item.id), 'right-answer': submitted && selectedId.length !== 0 && selectCorrect(data, item.id), 'correct': submitted && isSelected(item.id) && selectCorrect(data, item.id), 'wrong': submitted && isSelected(item.id) && !selectCorrect(data, item.id)}">
+                  <input class="checkbox" type="checkbox" :id="item.id" :name="data.id">
                   <label :for="item.id" class="option-item-label clearfix" ref='optionItemLabels'>
                     <span class="option-index">{{idxToLetter(index)}}</span>
                     <div class="option-text" v-html="unescapeHTML(item.text)"></div>
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <transition name="slide">
-              <div class='explanation' v-if='data.explanation && selectedId !== "" && submitted'>
+              <div class='explanation' v-if='data.explanation && selectedId.length !== 0 && submitted'>
                 <i class="icon-key"></i>
                 <div class="explanation-text" v-html="unescapeHTML(data.explanation)"></div>
               </div>
@@ -63,10 +63,15 @@
                 return letterMap[idx];
             },
             selectOption: function (id) {
-                this.selectedId = id;
+                var i = this.selectedId.indexOf(id);
+                if (i < 0) {
+                    this.selectedId.push(id);
+                } else {
+                    this.selectedId.splice(i, 1);
+                }
             },
             isSelected: function (id) {
-                return this.selectedId === id;
+                return this.selectedId.indexOf(id) >= 0;
             },
             selectCorrect: function (data, id) {
                 return data.assess.options[id] && data.assess.options[id].flag === true;
@@ -74,7 +79,7 @@
         },
         data () {
             return {
-                selectedId: '',
+                selectedId: [],
                 submitted: false
             };
         },
