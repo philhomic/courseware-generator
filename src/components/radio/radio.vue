@@ -5,19 +5,21 @@
             <div class='title' v-if='data.title' v-html='unescapeHTML(data.title)'></div>
             <div class='description' v-if='data.description' v-html="unescapeHTML(data.description)"></div>
             <div class='options' :id='data.id'>
-                <div class='option-item' v-for="(item, index) in data.options" ref='optionItems' @click="selectOption(item.id)" :class="{'selected': isSelected(item.id), 'right-answer': submitted && selectedId !== '' && selectCorrect(data, item.id), 'correct': submitted && isSelected(item.id) && selectCorrect(data, item.id), 'wrong': submitted && isSelected(item.id) && !selectCorrect(data, item.id)}">
-                  <input class="checkbox" type="radio" :id="item.id" :name="data.id">
-                  <label :for="item.id" class="option-item-label clearfix" ref='optionItemLabels'>
-                    <span class="option-index">{{idxToLetter(index)}}</span>
-                    <div class="option-text" v-html="unescapeHTML(item.text)"></div>
-                  </label>
+                <div class='option-item' v-for="(item, index) in data.options" ref='optionItems'
+                     @click="selectOption(item.id)"
+                     :class="{'selected': isSelected(item.id), 'right-answer': submitted && selectedId !== '' && selectCorrect(data, item.id), 'correct': submitted && isSelected(item.id) && selectCorrect(data, item.id), 'wrong': submitted && isSelected(item.id) && !selectCorrect(data, item.id)}">
+                    <input class="checkbox" type="radio" :id="item.id" :name="data.id">
+                    <label :for="item.id" class="option-item-label clearfix" ref='optionItemLabels'>
+                        <span class="option-index">{{idxToLetter(index)}}</span>
+                        <div class="option-text" v-html="unescapeHTML(item.text)"></div>
+                    </label>
                 </div>
             </div>
             <transition name="slide">
-              <div class='explanation' v-if='data.explanation && selectedId !== "" && submitted'>
-                <i class="icon-key"></i>
-                <div class="explanation-text" v-html="unescapeHTML(data.explanation)"></div>
-              </div>
+                <div class='explanation' v-if='data.explanation && selectedId !== "" && submitted'>
+                    <i class="icon-key"></i>
+                    <div class="explanation-text" v-html="unescapeHTML(data.explanation)"></div>
+                </div>
             </transition>
         </div>
     </div>
@@ -40,8 +42,12 @@
                 type: Object
             },
             colNum: {
-                default: '1',
-                type: String
+                default: 1,
+                type: Number
+            },
+            submitted: {
+                default: false,
+                type: Boolean
             }
         },
         methods: {
@@ -74,28 +80,27 @@
         },
         data () {
             return {
-                selectedId: '',
-                submitted: false
+                selectedId: ''
             };
         },
         mounted () {
             switch (this.colNum) {
-                case '2':
+                case 2:
                     this.$refs.optionItems.forEach((item) => {
                         item.style.width = '50%';
                     });
                     break;
-                case '3':
+                case 3:
                     this.$refs.optionItems.forEach((item) => {
                         item.style.width = '33%';
                     });
                     break;
-                case '4':
+                case 4:
                     this.$refs.optionItems.forEach((item) => {
                         item.style.width = '25%';
                     });
                     break;
-                case '5':
+                case 5:
                     this.$refs.optionItems.forEach((item) => {
                         item.style.width = '20%';
                     });

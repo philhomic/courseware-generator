@@ -1,0 +1,110 @@
+@import '../../assets/stylus/base'
+
+.checkbox-editor
+  width: 100%
+  min-width: 320px
+  margin-left: auto
+  margin-right: auto
+  padding: 10px 0
+  background-color: #fafafa
+  border-top: 1px solid #e0e0e0
+  border-bottom: 1px solid #e0e0e0
+  .inner
+    max-width: $question-max-width
+    position: relative
+    margin-left: auto
+    margin-right: auto
+    padding-left: 20px
+    padding-right: 20px
+    font-family: $question-text-font-family
+    font-size: 14px
+    .row
+      margin-top: 10px
+      margin-bottom: 10px
+      .row_title
+        float: left
+        width: 40px
+        height: 36px
+        line-height: 36px
+      .row_content
+        margin-left: 40px
+        min-height: 36px
+        line-height: 36px
+        .inline_editor
+          padding: 0 10px
+          min-height: 36px
+          line-height: 36px
+          background: #fff
+          border: 1px solid #e0e0e0
+      &.editor_options
+        position: relative
+        margin-top: 40px
+        .options_list
+          .additional_setting_title
+            font-size: 12px
+            top: -27px
+            position: absolute
+            right: 0px
+            width: 60px
+            text-align: center
+            color: #888
+        .normal_options_list
+          .option_item
+            position: relative;
+            overflow: hidden
+            margin: 3px 0 3px -3px
+            padding: 3px 0 3px 3px
+            font-size: 14px
+            line-height: 36px
+            .option_input_wrap
+              margin-left: 40px
+              margin-right: 90px
+              .inline_editor.option_text
+                padding: 0 10px
+                min-height: 36px
+                line-height: 36px
+                background: #fff
+                border: 1px solid #e0e0e0
+            .btn_del_option
+              color: #999999
+              position: absolute
+              top: 0
+              right: 60px
+              height: 42px
+              line-height: 42px
+              padding-left: 10px
+              padding-right: 10px
+            .additional_setting
+              position: absolute
+              top: 0
+              right: 0
+              width: 60px
+              height: 42px
+              line-height: 42px
+              text-align: center
+              vertical-align: middle
+        .option_create
+          margin: 3px 0 3px -3px
+          padding: 3px 0 3px 3px
+          font-size: 14px
+          line-height: 36px
+          .option_input_wrap
+            margin-left: 40px
+            margin-right: 90px
+            .add_option
+              display: inline-block
+              width: 100%
+              height: 36px
+              line-height: 36px
+              padding: 0 10px
+              box-sizing: border-box
+              border: 1px dashed #e0e0e0
+              background: #fafafa
+              color: #b2b2b2
+              cursor: pointer
+        .options_control
+          padding-left: 40px
+          line-height: 36px
+          .add_options
+            color: #2f8ddc
+            font-size: 14px

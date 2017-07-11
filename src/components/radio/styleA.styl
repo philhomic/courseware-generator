@@ -2,7 +2,7 @@
 
 .question
   width: 100%
-  max-width: 710px
+  max-width: $question-max-width
   min-width: 320px
   margin-left: auto
   margin-right: auto
@@ -96,11 +96,11 @@
         margin-left: 25px
         line-height: 20px
   &.submitted
-      .option-item.selected.correct, .option-item.right-answer
-        .option-index
-          background-color: $question-option-index-bgcolor-selected-correct !important
-          color: $question-option-index-color-selected-correct !important
-      .option-item.selected.wrong
-        .option-index
-          background-color: $question-option-index-bgcolor-selected-wrong !important
-          color: $question-option-index-color-selected-wrong !important
+    .option-item.selected.correct, .option-item.right-answer
+      .option-index
+        background-color: $question-option-index-bgcolor-selected-correct !important
+        color: $question-option-index-color-selected-correct !important
+    .option-item.selected.wrong
+      .option-index
+        background-color: $question-option-index-bgcolor-selected-wrong !important
+        color: $question-option-index-color-selected-wrong !important

@@ -40,8 +40,12 @@
                 type: Object
             },
             colNum: {
-                default: '1',
-                type: String
+                default: 1,
+                type: Number
+            },
+            submitted: {
+                default: false,
+                type: Boolean
             }
         },
         methods: {
@@ -79,28 +83,27 @@
         },
         data () {
             return {
-                selectedId: [],
-                submitted: false
+                selectedId: []
             };
         },
         mounted () {
             switch (this.colNum) {
-                case '2':
+                case 2:
                     this.$refs.optionItems.forEach((item) => {
                         item.style.width = '50%';
                     });
                     break;
-                case '3':
+                case 3:
                     this.$refs.optionItems.forEach((item) => {
                         item.style.width = '33%';
                     });
                     break;
-                case '4':
+                case 4:
                     this.$refs.optionItems.forEach((item) => {
                         item.style.width = '25%';
                     });
                     break;
-                case '5':
+                case 5:
                     this.$refs.optionItems.forEach((item) => {
                         item.style.width = '20%';
                     });

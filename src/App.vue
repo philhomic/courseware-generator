@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <div class="page">
+      <checkboxEditor></checkboxEditor>
       <idx idx="1"></idx>
-      <radio :data="radioData" colNum="2"></radio>
+      <component :is="radioData.type" :data="radioData" v-bind:colNum="2" v-bind:submitted="false"></component>
       <idx idx="2"></idx>
-      <radio :data="radioData2"></radio>
+      <component :is="radioData2.type" :data="radioData2" v-bind:submitted="false"></component>
       <idx idx="3"></idx>
-     <checkbox :data="radioData3" colNum="3"></checkbox>
+      <component :is="radioData3.type" :data="radioData3" v-bind:colNum="3" v-bind:submitted="false"></component>
     </div>
     <!--<router-view></router-view>-->
   </div>
@@ -15,6 +16,7 @@
 <script type="text/ecmascript-6">
   import radio from '@/components/radio/radio';
   import checkbox from '@/components/checkbox/checkbox';
+  import checkboxEditor from '@/components/checkbox_editor/checkbox_editor';
   import idx from '@/components/question_number/question_number';
 
   export default {
@@ -22,6 +24,7 @@
     components: {
       radio,
       checkbox,
+      checkboxEditor,
       idx
     },
     created () {
@@ -112,7 +115,7 @@
         id: 'q-1-Ddbn2'
       };
       let radioData3 = {
-        type: 'radio',
+        type: 'checkbox',
         title: '这里输入题干',
         description: '这里是题目备注',
         required: true,
