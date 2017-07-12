@@ -4,16 +4,16 @@
       <div class="row editor_title">
         <label class="row_title">题目</label>
         <div class="row_content">
-          <div contenteditable="true" class="inline_editor">
-            <p>单选题</p>
+          <div contenteditable="true" class="inline_editor" ref="title">
+            {{data.title}}
           </div>
         </div>
       </div>
       <div class="row editor_description">
         <label class="row_title">备注</label>
         <div class="row_content">
-          <div contenteditable="true" class="inline_editor">
-            <p>单选题备注</p>
+          <div contenteditable="true" class="inline_editor" ref="description">
+            {{data.description}}
           </div>
         </div>
       </div>
@@ -23,21 +23,10 @@
             <span class="correct_answer">正确答案</span>
           </div>
           <ul class="normal_options_list">
-            <li class="option_item">
+            <li class="option_item" v-for="(option, index) in data.options">
               <div class="option_input_wrap">
-                <div class="inline_editor option_text" contenteditable="true">
-                  <p>选项1</p>
-                </div>
-              </div>
-              <a class="btn_del_option" href="javascript:;">×</a>
-              <div class="additional_setting">
-                <input class="correct_answer" type="checkbox">
-              </div>
-            </li>
-            <li class="option_item">
-              <div class="option_input_wrap">
-                <div class="inline_editor option_text" contenteditable="true">
-                  <p>选项2</p>
+                <div class="inline_editor option_text" contenteditable="true" ref="options">
+                  <p>{{option.text}}</p>
                 </div>
               </div>
               <a class="btn_del_option" href="javascript:;">×</a>
@@ -56,13 +45,44 @@
           <a class="add_options" href="javascript:;">批量修改</a>
         </div>
       </div>
+      <div class="row editor_explanation">
+        <label class="row_title">解析</label>
+        <div class="row_content">
+          <div contenteditable="true" class="inline_editor" ref="explanation">
+            {{data.explanation}}
+          </div>
+        </div>
+      </div>
+      <div class="row row_split">
+        <div class="split"></div>
+      </div>
+      <div class="row editor_control">
+        <a class="editor_confirm_btn" href="javascript:;" @click="updateQuestion">确定</a>
+        <a class="editor_cancel_btn" href="javascript:;">取消</a>
+      </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   export default {
-
+    props: {
+      data: {
+        type: Object
+      },
+      index: {
+        type: Number
+      }
+    },
+    methods: {
+      updateQuestion: function () {
+        let newData = JSON.parse(JSON.stringify(this.data));
+        newData.title = this.$refs.title.innerHTML;
+        newData.description = this.$refs.description.innerHTML;
+        newData.explanation = this.$refs.explanation.innerHTML;
+        this.$emit('updateQuestion', this.index, newData);
+      }
+    }
   };
 </script>
 

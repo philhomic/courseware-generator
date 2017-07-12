@@ -48,6 +48,10 @@
             submitted: {
                 default: false,
                 type: Boolean
+            },
+            id: {
+              default: '',
+              type: String
             }
         },
         methods: {

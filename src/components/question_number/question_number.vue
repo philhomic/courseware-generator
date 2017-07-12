@@ -10,8 +10,8 @@
     export default {
         props: {
             idx: {
-                type: String,
-                default: '1',
+                type: Number,
+                default: 1,
                 required: true
             }
         }
