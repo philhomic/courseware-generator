@@ -1,18 +1,18 @@
 export default {
   type: 'checkbox',
-  title: '&lt;p&gt;多选题&lt;/p&gt;',
-  description: '&lt;p&gt;多选题备注&lt;/p&gt;',
+  title: '多选题',
+  description: '多选题备注',
   assess: {
     options: {
     }
   },
   options: [{
     id: '',
-    text: '&lt;p&gt;选项A&lt;/p&gt;'
+    text: '选项1'
   }, {
     id: '',
-    text: '&lt;p&gt;选项B&lt;/p&gt;'
+    text: '选项2'
   }],
-  explanation: '&lt;p&gt;多选题解析&lt;/p&gt;',
+  explanation: '多选题解析',
   id: ''
 };

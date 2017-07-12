@@ -3,7 +3,7 @@
     <div v-for="(question, index) in data.questions">
       <component  :is="question.type + 'Editor'" v-bind:key="index" v-bind:index="index" :data="question" v-on:updateQuestion="updateQuestion"></component>
       <idx :idx="index + 1"></idx>
-      <component :is="question.type" v-bind:key="index" v-bind:index="index" :data="question" :colNum="1" :submitted="false"></component>
+      <component :is="question.type" v-bind:key="index" v-bind:index="index" :data="question" :colNum="1" :submitted="true"></component>
     </div>
   </div>
 </template>
@@ -51,7 +51,7 @@
       addRadio: function () {
         radioData.id = questionGuid.encode(this.count);
         radioData.options.forEach((option, index) => {
-          option.id = questionGuid.encode(this.count, index);
+          option.id = questionGuid.encode(this.page.questions.length, index);
         });
         this.count++;
         this.page.questions.push(radioData);
@@ -59,7 +59,7 @@
       addCheckbox: function () {
         checkboxData.id = questionGuid.encode(this.count);
         checkboxData.options.forEach((option, index) => {
-          option.id = questionGuid.encode(this.count, index);
+          option.id = questionGuid.encode(this.page.questions.length, index);
         });
         this.count++;
         this.page.questions.push(checkboxData);
@@ -70,8 +70,7 @@
         page: {
           id: pageId,
           questions: []
-        },
-        count: 0
+        }
       };
     }
   };

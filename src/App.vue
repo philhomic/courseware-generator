@@ -4,10 +4,10 @@
       <div id="menu" class="question_type">
         <ul>
           <li class="type_item radio">
-            <a href="javascript:;" @click="addRadio(currentPageIndex)">单选题</a>
+            <a href="javascript:;" @click="addRadio">单选题</a>
           </li>
           <li class="type_item checkbox">
-            <a href="javascript:;" @click="addCheckbox(currentPageIndex)">多选题</a>
+            <a href="javascript:;" @click="addCheckbox">多选题</a>
           </li>
         </ul>
       </div>
@@ -85,7 +85,8 @@
             questions: []
           }]
         },
-        currentPageIndex: 0
+        currentPageIndex: 0,
+        count: 0
       };
     }
   };

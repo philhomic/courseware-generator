@@ -26,17 +26,17 @@
             <li class="option_item" v-for="(option, index) in data.options">
               <div class="option_input_wrap">
                 <div class="inline_editor option_text" contenteditable="true" ref="options">
-                  <p>{{option.text}}</p>
+                  {{option.text}}
                 </div>
               </div>
               <a class="btn_del_option" href="javascript:;">×</a>
               <div class="additional_setting">
-                <input class="correct_answer" type="checkbox">
+                <input class="correct_answer" type="checkbox" @click="addAnswer(option.id)">
               </div>
             </li>
           </ul>
           <li class="option_item option_create">
-            <div class="option_input_wrap">
+            <div class="option_input_wrap" @click="addOption(data.options.length)">
               <span class="add_option">新建选项</span>
             </div>
           </li>
@@ -65,6 +65,10 @@
 </template>
 
 <script type="text/ecmascript-6">
+  let newData;
+  import Hashids from 'hashids';
+  const questionGuid = new Hashids('question', 8);
+
   export default {
     props: {
       data: {
@@ -75,11 +79,27 @@
       }
     },
     methods: {
+      addAnswer: function (id) {
+        newData = JSON.parse(JSON.stringify(this.data));
+        if (!newData.assess.options[id] || newData.assess.options[id].flag === false) {
+          newData.assess.options[id] = { flag: true };
+        } else {
+          newData.assess.options[id].flag = false;
+        }
+      },
+      addOption: function (idx) {
+        newData.options.push({
+          id: questionGuid.encode(this.index, idx),
+          text: '选项' + idx
+        });
+      },
       updateQuestion: function () {
-        let newData = JSON.parse(JSON.stringify(this.data));
         newData.title = this.$refs.title.innerHTML;
         newData.description = this.$refs.description.innerHTML;
         newData.explanation = this.$refs.explanation.innerHTML;
+        newData.options.forEach((option, index) => {
+          option.text = this.$refs.options[index].innerHTML;
+        });
         this.$emit('updateQuestion', this.index, newData);
       }
     }
