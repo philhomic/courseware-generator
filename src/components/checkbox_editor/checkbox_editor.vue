@@ -57,8 +57,8 @@
         <div class="split"></div>
       </div>
       <div class="row editor_control">
-        <a class="editor_confirm_btn" href="javascript:;" @click="updateQuestion">确定</a>
-        <a class="editor_cancel_btn" href="javascript:;" @click="cancelUpdateQuestion">取消</a>
+        <a class="editor_confirm_btn" href="javascript:;" @click="updateCheckbox">确定</a>
+        <a class="editor_cancel_btn" href="javascript:;" @click="cancelUpdateBlock">取消</a>
       </div>
     </div>
   </div>
@@ -66,15 +66,13 @@
 
 <script type="text/ecmascript-6">
   let oldData;
-  import Hashids from 'hashids';
-  const questionGuid = new Hashids('question', 8);
 
   export default {
     props: {
       data: {
         type: Object
       },
-      index: {
+      blockIndex: {
         type: Number
       }
     },
@@ -82,32 +80,47 @@
       oldData = JSON.parse(JSON.stringify(this.data));
     },
     methods: {
-      addAnswer: function (id) {
-        // newData = JSON.parse(JSON.stringify(this.data));
-        if (!this.data.assess.options[id] || this.data.assess.options[id].flag === false) {
-          this.data.assess.options[id] = { flag: true };
-        } else {
-          this.data.assess.options[id].flag = false;
-        }
-      },
-      addOption: function (idx) {
-        this.data.options.push({
-          id: questionGuid.encode(this.index, idx),
-          text: '选项' + (idx + 1)
+      addAnswer (optionId) {
+        this.$store.commit('addAnswer', {
+          pageIndex: this.$parent.pageIndex,
+          blockIndex: this.blockIndex,
+          optionId: optionId
         });
       },
-      updateQuestion: function () {
-        this.data.title = this.$refs.title.innerHTML;
-        this.data.description = this.$refs.description.innerHTML;
-        this.data.explanation = this.$refs.explanation.innerHTML;
-        this.data.options.forEach((option, index) => {
-          option.text = this.$refs.options[index].innerHTML;
+      addOption (optionIndex) {
+        this.$store.commit('addOption', {
+          pageIndex: this.$parent.pageIndex,
+          blockIndex: this.blockIndex,
+          optionIndex: optionIndex
         });
-        oldData = JSON.parse(JSON.stringify(this.data));
-        // this.$emit('updateQuestion', this.index, newData);
       },
-      cancelUpdateQuestion: function () {
-        this.$emit('cancelUpdateQuestion', this.index, oldData);
+      updateCheckbox () {
+        let newData = JSON.parse(JSON.stringify(this.data));
+        let title = this.$refs.title;
+        let description = this.$refs.description;
+        let explanation = this.$refs.explanation;
+        let options = this.$refs.options;
+
+        newData.title = title.innerHTML;
+        newData.description = description.innerHTML;
+        newData.explanation = explanation.innerHTML;
+        newData.options.forEach((option, index) => {
+          option.text = options[index].innerHTML;
+        });
+
+        this.$store.commit('updateCheckbox', {
+          pageIndex: this.$parent.pageIndex,
+          blockIndex: this.blockIndex,
+          newData: newData
+        });
+        oldData = JSON.parse(JSON.stringify(newData));
+      },
+      cancelUpdateBlock () {
+        this.$store.commit('cancelUpdateBlock', {
+          pageIndex: this.$parent.pageIndex,
+          blockIndex: this.blockIndex,
+          oldData: oldData
+        });
       }
     }
   };

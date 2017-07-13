@@ -13,8 +13,8 @@
       </div>
     </div>
     <div class="right">
-      <div v-for="(page, index) in data.pages">
-        <pageEditor :data="page" :index="index" v-on:cancelUpdatePage="cancelUpdatePage"></pageEditor>
+      <div v-for="(page, pageIndex) in pages">
+        <pageEditor :data="page" :pageIndex="pageIndex"></pageEditor>
       </div>
 
     </div>
@@ -24,59 +24,27 @@
 
 <script type="text/ecmascript-6">
   import pageEditor from '@/components/page_editor/page_editor';
-  import Hashids from 'hashids';
-  const questionnaireGuid = new Hashids('questionnaire', 8);
-  const pageGuid = new Hashids('page', 5);
-
-  import radioDataStructure from '@/assets/data_structure/radio.js';
-  import checkboxDataStructure from '@/assets/data_structure/checkbox.js';
-
-  const questionGuid = new Hashids('question', 8);
 
  export default {
     name: 'app',
     components: {
       pageEditor
     },
-    methods: {
-      cancelUpdatePage: function (index, data) {
-        this.data.pages.splice(index, 1, data);
-      },
-      questionGuid: function (i) {
-        return questionGuid.encode(i);
-      },
-      addRadio: function () {
-        let radioData = JSON.parse(JSON.stringify(radioDataStructure));
-        radioData.id = questionGuid.encode(this.count);
-        radioData.options.forEach((option, index) => {
-          option.id = questionGuid.encode(this.count, index);
-        });
-        this.count++;
-        this.data.pages[this.currentPageIndex].questions.push(radioData);
-      },
-      addCheckbox: function () {
-        let checkboxData = JSON.parse(JSON.stringify(checkboxDataStructure));
-        checkboxData.id = questionGuid.encode(this.count);
-        checkboxData.options.forEach((option, index) => {
-          option.id = questionGuid.encode(this.count, index);
-        });
-        this.count++;
-        this.data.pages[this.currentPageIndex].questions.push(checkboxData);
+   computed: {
+      pages () {
+        return this.$store.state.course.pages;
       }
-    },
-    data () {
-      return {
-        data: {
-          id: questionnaireGuid.encode(0),
-          title: '课件生成器',
-          pages: [{
-            id: pageGuid.encode(0),
-            questions: []
-          }]
-        },
-        currentPageIndex: 0,
-        count: 0
-      };
+   },
+    methods: {
+      // cancelUpdatePage: function (index, data) {
+      //   // this.data.pages.splice(index, 1, data);
+      // },
+      addRadio () {
+        this.$store.commit('addRadio');
+      },
+      addCheckbox () {
+        this.$store.commit('addCheckbox');
+      }
     }
   };
 </script>

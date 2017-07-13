@@ -1,9 +1,9 @@
 <template>
   <div class="page">
-    <div v-for="(question, index) in data.questions">
-      <component  :is="question.type + 'Editor'" v-bind:key="index" v-bind:index="index" :data="question" v-on:cancelUpdateQuestion="cancelUpdateQuestion"></component>
-      <idx :idx="index + 1"></idx>
-      <component :is="question.type" v-bind:key="index" v-bind:index="index" :data="question" :colNum="1" :submitted="true"></component>
+    <div v-for="(block, blockIndex) in currentPage.blocks">
+      <component  :is="block.type + 'Editor'" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block"></component>
+      <idx :idx="currentPage.questionCount"></idx>
+      <component :is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block" :colNum="1" :submitted="true"></component>
     </div>
   </div>
 </template>
@@ -13,19 +13,19 @@
   import checkbox from '@/components/checkbox/checkbox';
   import checkboxEditor from '@/components/checkbox_editor/checkbox_editor';
   import idx from '@/components/question_number/question_number';
-  import Hashids from 'hashids';
-
-  const pageGuid = new Hashids('page', 5);
-
-  let pageId = pageGuid.encode(this.index);
 
   export default {
     props: {
       data: {
         type: Object
       },
-      index: {
+      pageIndex: {
         type: Number
+      }
+    },
+    computed: {
+      currentPage () {
+        return this.$store.state.course.pages[this.pageIndex];
       }
     },
     components: {
@@ -33,21 +33,6 @@
       checkbox,
       checkboxEditor,
       idx
-    },
-    methods: {
-      cancelUpdateQuestion: function (idx, data) {
-        let oldPage = JSON.parse(JSON.stringify(this.data));
-        oldPage.questions.splice(idx, 1, data);
-        this.$emit('cancelUpdatePage', this.index, oldPage);
-      }
-    },
-    data () {
-      return {
-        page: {
-          id: pageId,
-          questions: []
-        }
-      };
     }
   };
 </script>
