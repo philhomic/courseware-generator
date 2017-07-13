@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div v-for="(question, index) in data.questions">
-      <component  :is="question.type + 'Editor'" v-bind:key="index" v-bind:index="index" :data="question" v-on:updateQuestion="updateQuestion"></component>
+      <component  :is="question.type + 'Editor'" v-bind:key="index" v-bind:index="index" :data="question" v-on:cancelUpdateQuestion="cancelUpdateQuestion"></component>
       <idx :idx="index + 1"></idx>
       <component :is="question.type" v-bind:key="index" v-bind:index="index" :data="question" :colNum="1" :submitted="true"></component>
     </div>
@@ -15,14 +15,9 @@
   import idx from '@/components/question_number/question_number';
   import Hashids from 'hashids';
 
-  import radioData from '@/assets/data_structure/radio.js';
-  import checkboxData from '@/assets/data_structure/checkbox.js';
-
-  const questionGuid = new Hashids('question', 8);
   const pageGuid = new Hashids('page', 5);
 
-  let index = 0;
-  let pageId = pageGuid.encode(index);
+  let pageId = pageGuid.encode(this.index);
 
   export default {
     props: {
@@ -40,29 +35,10 @@
       idx
     },
     methods: {
-      updateQuestion: function (idx, data) {
-        let newPage = JSON.parse(JSON.stringify(this.data));
-        newPage.questions.splice(idx, 1, data);
-        this.$emit('updatePage', index, newPage);
-      },
-      questionGuid: function (i) {
-        return questionGuid.encode(i);
-      },
-      addRadio: function () {
-        radioData.id = questionGuid.encode(this.count);
-        radioData.options.forEach((option, index) => {
-          option.id = questionGuid.encode(this.page.questions.length, index);
-        });
-        this.count++;
-        this.page.questions.push(radioData);
-      },
-      addCheckbox: function () {
-        checkboxData.id = questionGuid.encode(this.count);
-        checkboxData.options.forEach((option, index) => {
-          option.id = questionGuid.encode(this.page.questions.length, index);
-        });
-        this.count++;
-        this.page.questions.push(checkboxData);
+      cancelUpdateQuestion: function (idx, data) {
+        let oldPage = JSON.parse(JSON.stringify(this.data));
+        oldPage.questions.splice(idx, 1, data);
+        this.$emit('cancelUpdatePage', this.index, oldPage);
       }
     },
     data () {

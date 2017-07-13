@@ -14,7 +14,7 @@
     </div>
     <div class="right">
       <div v-for="(page, index) in data.pages">
-        <pageEditor :data="page" :index="index" v-on:updatePage="updatePage"></pageEditor>
+        <pageEditor :data="page" :index="index" v-on:cancelUpdatePage="cancelUpdatePage"></pageEditor>
       </div>
 
     </div>
@@ -23,42 +23,30 @@
 </template>
 
 <script type="text/ecmascript-6">
-  // import radio from '@/components/radio/radio';
-  // import checkbox from '@/components/checkbox/checkbox';
-  // import checkboxEditor from '@/components/checkbox_editor/checkbox_editor';
-  // import idx from '@/components/question_number/question_number';
   import pageEditor from '@/components/page_editor/page_editor';
   import Hashids from 'hashids';
   const questionnaireGuid = new Hashids('questionnaire', 8);
   const pageGuid = new Hashids('page', 5);
 
-  import radioData from '@/assets/data_structure/radio.js';
-  import checkboxData from '@/assets/data_structure/checkbox.js';
+  import radioDataStructure from '@/assets/data_structure/radio.js';
+  import checkboxDataStructure from '@/assets/data_structure/checkbox.js';
 
   const questionGuid = new Hashids('question', 8);
-  // const pageGuid = new Hashids('page', 5);
-
-  // let index = 0;
-  // let pageId = pageGuid.encode(index);
 
  export default {
     name: 'app',
     components: {
-      // radio,
-      // checkbox,
-      // checkboxEditor,
       pageEditor
-      // idx
     },
     methods: {
-      updatePage: function (index, data) {
+      cancelUpdatePage: function (index, data) {
         this.data.pages.splice(index, 1, data);
-        // console.log(this.page.questions);
       },
       questionGuid: function (i) {
         return questionGuid.encode(i);
       },
       addRadio: function () {
+        let radioData = JSON.parse(JSON.stringify(radioDataStructure));
         radioData.id = questionGuid.encode(this.count);
         radioData.options.forEach((option, index) => {
           option.id = questionGuid.encode(this.count, index);
@@ -67,6 +55,7 @@
         this.data.pages[this.currentPageIndex].questions.push(radioData);
       },
       addCheckbox: function () {
+        let checkboxData = JSON.parse(JSON.stringify(checkboxDataStructure));
         checkboxData.id = questionGuid.encode(this.count);
         checkboxData.options.forEach((option, index) => {
           option.id = questionGuid.encode(this.count, index);
@@ -108,10 +97,6 @@
       #menu
         position: fixed
         width: 210px
-        /*left: 20px*/
-        /*top: 20px*/
-        /*right: 20px*/
-        /*bottom: 20px*/
         overflow-y: auto
         .type_item
           cursor: pointer

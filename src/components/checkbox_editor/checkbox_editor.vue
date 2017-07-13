@@ -58,14 +58,14 @@
       </div>
       <div class="row editor_control">
         <a class="editor_confirm_btn" href="javascript:;" @click="updateQuestion">确定</a>
-        <a class="editor_cancel_btn" href="javascript:;">取消</a>
+        <a class="editor_cancel_btn" href="javascript:;" @click="cancelUpdateQuestion">取消</a>
       </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  let newData;
+  let oldData;
   import Hashids from 'hashids';
   const questionGuid = new Hashids('question', 8);
 
@@ -78,29 +78,36 @@
         type: Number
       }
     },
+    mounted () {
+      oldData = JSON.parse(JSON.stringify(this.data));
+    },
     methods: {
       addAnswer: function (id) {
-        newData = JSON.parse(JSON.stringify(this.data));
-        if (!newData.assess.options[id] || newData.assess.options[id].flag === false) {
-          newData.assess.options[id] = { flag: true };
+        // newData = JSON.parse(JSON.stringify(this.data));
+        if (!this.data.assess.options[id] || this.data.assess.options[id].flag === false) {
+          this.data.assess.options[id] = { flag: true };
         } else {
-          newData.assess.options[id].flag = false;
+          this.data.assess.options[id].flag = false;
         }
       },
       addOption: function (idx) {
-        newData.options.push({
+        this.data.options.push({
           id: questionGuid.encode(this.index, idx),
-          text: '选项' + idx
+          text: '选项' + (idx + 1)
         });
       },
       updateQuestion: function () {
-        newData.title = this.$refs.title.innerHTML;
-        newData.description = this.$refs.description.innerHTML;
-        newData.explanation = this.$refs.explanation.innerHTML;
-        newData.options.forEach((option, index) => {
+        this.data.title = this.$refs.title.innerHTML;
+        this.data.description = this.$refs.description.innerHTML;
+        this.data.explanation = this.$refs.explanation.innerHTML;
+        this.data.options.forEach((option, index) => {
           option.text = this.$refs.options[index].innerHTML;
         });
-        this.$emit('updateQuestion', this.index, newData);
+        oldData = JSON.parse(JSON.stringify(this.data));
+        // this.$emit('updateQuestion', this.index, newData);
+      },
+      cancelUpdateQuestion: function () {
+        this.$emit('cancelUpdateQuestion', this.index, oldData);
       }
     }
   };
