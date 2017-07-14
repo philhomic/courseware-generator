@@ -45,6 +45,9 @@ export default {
       text: '选项' + (payload.optionIndex + 1)
     });
   },
+  deleteOption (state, payload) {
+    state.course.pages[payload.pageIndex].blocks[payload.blockIndex].options.splice(payload.optionIndex, 1);
+  },
   updateCheckbox (state, payload) {
     state.course.pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, same(payload.newData));
   },

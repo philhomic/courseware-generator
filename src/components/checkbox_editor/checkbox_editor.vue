@@ -29,7 +29,7 @@
                   {{option.text}}
                 </div>
               </div>
-              <a class="btn_del_option" href="javascript:;">×</a>
+              <a class="btn_del_option" href="javascript:;" @click="deleteOption(index)">×</a>
               <div class="additional_setting">
                 <input class="correct_answer" type="checkbox" @click="addAnswer(option.id)" :checked = "isChecked(option)">
               </div>
@@ -90,6 +90,13 @@
       },
       addOption (optionIndex) {
         this.$store.commit('addOption', {
+          pageIndex: this.$parent.pageIndex,
+          blockIndex: this.blockIndex,
+          optionIndex: optionIndex
+        });
+      },
+      deleteOption (optionIndex) {
+        this.$store.commit('deleteOption', {
           pageIndex: this.$parent.pageIndex,
           blockIndex: this.blockIndex,
           optionIndex: optionIndex
