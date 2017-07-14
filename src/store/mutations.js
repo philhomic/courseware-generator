@@ -1,17 +1,21 @@
-import data from '@/assets/data_structure/data';
+import data from '@/assets/js/data';
 import Hashids from 'hashids';
 
 const blockGuid = new Hashids('block', 8);
 const optionGuid = new Hashids('option', 10);
+function same (data) {
+  return JSON.parse(JSON.stringify(data));
+}
+// import {blockGuid, optionGuid} from '@/assets/js/util';
 
 export default {
   addRadio (state) {
     let currentPage = state.course.pages[state.currentPageIndex];
     let blockIndex = currentPage.blocks.length;
     let radioData = JSON.parse(JSON.stringify(data.radio));
-    radioData.id = blockGuid.encode(blockIndex);
+    radioData.id = blockGuid.encode(state.currentPageIndex, blockIndex);
     radioData.options.forEach((option, optionIndex) => {
-      option.id = optionGuid.encode(blockIndex, optionIndex);
+      option.id = optionGuid.encode(state.currentPageIndex, blockIndex, optionIndex);
     });
     currentPage.blocks.push(radioData);
     currentPage.questionCount ++;
@@ -20,9 +24,9 @@ export default {
     let currentPage = state.course.pages[state.currentPageIndex];
     let blockIndex = currentPage.blocks.length;
     let checkboxData = JSON.parse(JSON.stringify(data.checkbox));
-    checkboxData.id = blockGuid.encode(blockIndex);
+    checkboxData.id = blockGuid.encode(state.currentPageIndex, blockIndex);
     checkboxData.options.forEach((option, optionIndex) => {
-      option.id = optionGuid.encode(blockIndex, optionIndex);
+      option.id = optionGuid.encode(state.currentPageIndex, blockIndex, optionIndex);
     });
     currentPage.blocks.push(checkboxData);
     currentPage.questionCount ++;
@@ -42,10 +46,9 @@ export default {
     });
   },
   updateCheckbox (state, payload) {
-    state.course.pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, payload.newData);
+    state.course.pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, same(payload.newData));
   },
   cancelUpdateBlock (state, payload) {
-    console.log(payload);
-    state.course.pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, payload.oldData);
+    state.course.pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, same(payload.oldData));
   }
 };

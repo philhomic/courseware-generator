@@ -31,7 +31,7 @@
               </div>
               <a class="btn_del_option" href="javascript:;">×</a>
               <div class="additional_setting">
-                <input class="correct_answer" type="checkbox" @click="addAnswer(option.id)">
+                <input class="correct_answer" type="checkbox" @click="addAnswer(option.id)" :checked = "isChecked(option)">
               </div>
             </li>
           </ul>
@@ -65,6 +65,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+
   let oldData;
 
   export default {
@@ -121,6 +122,14 @@
           blockIndex: this.blockIndex,
           oldData: oldData
         });
+      },
+      isChecked (option) {
+        let assessOption = this.data.assess.options[option.id];
+        if (assessOption && assessOption.flag === true) {
+          return true;
+        } else {
+          return false;
+        }
       }
     }
   };
