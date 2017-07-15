@@ -1,18 +1,11 @@
 <template>
   <div class="page">
-    <div v-for="(block, blockIndex) in currentPage.blocks">
-      <component  :is="block.type + 'Editor'" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block"></component>
-      <idx :idx="currentPage.questionCount"></idx>
-      <component :is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block" :colNum="1" :submitted="true"></component>
-    </div>
+    <blockEditor v-for="(block, blockIndex) in currentPage.blocks" :block="block" :blockIndex="blockIndex" :pageIndex="pageIndex" :key="blockIndex"></blockEditor>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import radio from '@/components/radio/radio';
-  import checkbox from '@/components/checkbox/checkbox';
-  import checkboxEditor from '@/components/checkbox_editor/checkbox_editor';
-  import idx from '@/components/question_number/question_number';
+  import blockEditor from '@/components/block_editor/block_editor';
 
   export default {
     props: {
@@ -29,10 +22,12 @@
       }
     },
     components: {
-      radio,
-      checkbox,
-      checkboxEditor,
-      idx
+      blockEditor
+    },
+    methods: {
+      clone (json) {
+        return JSON.parse(JSON.stringify(json));
+      }
     }
   };
 </script>

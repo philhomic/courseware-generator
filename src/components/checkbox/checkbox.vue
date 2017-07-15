@@ -1,6 +1,6 @@
 <!--单选题-->
 <template>
-    <div class='question question_checkbox' :class="{'submitted': submitted}">
+    <div class='question question_checkbox border-1px' :class="{'submitted': submitted}">
         <div class='inner'>
             <div class='title' v-if='data.title' v-html='unescapeHTML(data.title)'></div>
             <div class='description' v-if='data.description' v-html="unescapeHTML(data.description)"></div>

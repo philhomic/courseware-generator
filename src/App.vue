@@ -36,9 +36,6 @@
       }
    },
     methods: {
-      // cancelUpdatePage: function (index, data) {
-      //   // this.data.pages.splice(index, 1, data);
-      // },
       addRadio () {
         this.$store.commit('addRadio');
       },

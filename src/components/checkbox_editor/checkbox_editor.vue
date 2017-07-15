@@ -65,6 +65,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {clone} from '@/assets/js/util';
 
   let oldData;
 
@@ -78,10 +79,11 @@
       }
     },
     mounted () {
-      oldData = JSON.parse(JSON.stringify(this.data));
+      oldData = clone(this.data);
     },
     methods: {
       addAnswer (optionId) {
+        console.log(this.data);
         this.$store.commit('addAnswer', {
           pageIndex: this.$parent.pageIndex,
           blockIndex: this.blockIndex,
@@ -103,7 +105,7 @@
         });
       },
       updateCheckbox () {
-        let newData = JSON.parse(JSON.stringify(this.data));
+        let newData = clone(this.data);
         let title = this.$refs.title;
         let description = this.$refs.description;
         let explanation = this.$refs.explanation;
@@ -122,6 +124,7 @@
           newData: newData
         });
         oldData = JSON.parse(JSON.stringify(newData));
+        this.$emit('stopEditing');
       },
       cancelUpdateBlock () {
         this.$store.commit('cancelUpdateBlock', {
@@ -129,6 +132,7 @@
           blockIndex: this.blockIndex,
           oldData: oldData
         });
+        this.$emit('stopEditing');
       },
       isChecked (option) {
         let assessOption = this.data.assess.options[option.id];

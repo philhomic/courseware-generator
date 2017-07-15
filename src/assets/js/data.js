@@ -1,8 +1,7 @@
 export default {
   page: {
     id: '',
-    blocks: [],
-    questionCount: 0
+    blocks: []
   },
   radio: {
     type: 'radio',
@@ -20,7 +19,8 @@ export default {
       text: '选项2'
     }],
       explanation: '单选题解析',
-      id: ''
+      id: '',
+      isQuestion: true
   },
   checkbox: {
     type: 'checkbox',
@@ -38,6 +38,7 @@ export default {
       text: '选项2'
     }],
     explanation: '多选题解析',
-    id: ''
+    id: '',
+    isQuestion: true
   }
 };
