@@ -4,9 +4,9 @@
       <div class="row editor_title">
         <label class="row_title">题目</label>
         <div class="row_content">
-          <div contenteditable="true" class="inline_editor" ref="title">
-            {{unescapeHTML(data.title)}}
-          </div>
+          <manaoEditor contenteditable="true" mClass="inline_editor" ref="title" :data="data.title">
+            <!--{{unescapeHTML(data.title)}}-->
+          </manaoEditor>
         </div>
       </div>
       <div class="row editor_description">
@@ -85,7 +85,7 @@
 
 <script type="text/ecmascript-6">
   import {clone, escapeHTML, unescapeHTML} from '@/assets/js/util';
-  // import manaoEditor from '@/components/manao_editor/manao_editor';
+   import manaoEditor from '@/components/manao_editor/manao_editor';
 
   let oldData;
 
@@ -104,7 +104,7 @@
       };
     },
     components: {
-      // manaoEditor
+       manaoEditor
     },
     mounted () {
       oldData = clone(this.data);
@@ -150,7 +150,9 @@
         let options = this.$refs.options;
         let columnCount = parseInt(this.$refs.columnCount.value);
 
-        newData.title = escapeHTML(title.innerHTML);
+        console.log(title);
+
+        newData.title = escapeHTML(title.htmlString);
         newData.description = escapeHTML(description.innerHTML);
         newData.explanation = escapeHTML(explanation.innerHTML);
         newData.options.forEach((option, index) => {

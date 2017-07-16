@@ -25,7 +25,7 @@ export default {
   },
   checkbox: {
     type: 'checkbox',
-    title: '多选题',
+    title: '&lt;p&gt;多选题&lt;&#x2f;p&gt;',
     description: '多选题备注',
     assess: {
       options: {

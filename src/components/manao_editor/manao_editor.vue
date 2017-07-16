@@ -1,6 +1,6 @@
 <template>
-  <div class="manao-editor-wrapper" :class="this.mClass">
-    <div class="manao-editor clearfix" ref="editorDiv" spellcheck="false" contenteditable="true" @change="emitHTML"  @focus="isEditing=true" @blur="stopEdit" v-html="unescapeHTML(this.data)"></div>
+  <div class="manao-editor-wrapper" :class="this.mClass" @focus="isEditing=true" @blur="isEditing=false" @input="updateHTMLString">
+    <div class="manao-editor" ref="editorDiv" spellcheck="false" contenteditable="true" @input="updateHTMLString"  @focus="isEditing" @blur="stopEdit"></div>
     <div class="toolbar" v-show="isEditing">
       <ul class="tools">
         <li class="editor-button" v-for="(tool, index) in this.tools">
@@ -17,7 +17,8 @@
   export default {
     props: {
       data: {
-        type: String
+        type: String,
+        default: ''
       },
       mClass: {
         type: String
@@ -29,19 +30,21 @@
     },
     data () {
       return {
-        isEditing: false
+        isEditing: false,
+        htmlString: ''
       };
     },
+    mounted () {
+      this.$refs.editorDiv.innerHTML = unescapeHTML(this.data);
+      this.htmlString = escapeHTML(this.data.trim());
+    },
     methods: {
-      unescapeHTML: function (string) {
-        return unescapeHTML(string);
-      },
       dummyFunction: function () {},
-      emitHTML: function () {
-        this.$emit('htmlChanged', escapeHTML(this.$refs.editorDiv.innerHTML));
+      updateHTMLString: function () {
+        this.htmlString = escapeHTML(this.$refs.editorDiv.innerHTML);
+        console.log(this.htmlString);
       },
       edit: function (tool) {
-        console.log(tool);
         switch (tool) {
           case 'bold':
           case 'italic':
@@ -75,12 +78,9 @@
     position: relative
     overflow: visible
     .manao-editor
-      b, strong
-        font-weight: 700
-      i
-        font-style: italic
-      u
-        text-decoration: underline
+      position: relative
+      width: 100%
+      height: 100%
     .toolbar
       position: absolute
       top: 100%

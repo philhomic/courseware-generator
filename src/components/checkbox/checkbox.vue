@@ -26,14 +26,8 @@
 </template>
 
 <script type='text/ecmascript-6'>
-    const unescapeHTMLMap = {
-        '&': /&amp;/g,
-        '<': /&lt;/g,
-        '>': /&gt;/g,
-        '"': /&quot;/g,
-        '\'': /&apos;/g,
-        '/': /&#x2f;/g
-    };
+  import {unescapeHTML} from '../../assets/js/util';
+
     const letterMap = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
     export default {
@@ -52,18 +46,8 @@
         },
         methods: {
             unescapeHTML: function (str) {
-                if (str === '' || str === null) {
-                    return '';
-                }
-                str = str.replace(/&#(x)?([\w\d]{0,5});/ig, function (full, hex, code) {
-                    return String.fromCharCode(parseInt(code, hex ? 16 : 10));
-                });
-
-                for (var src in unescapeHTMLMap) {
-                    str = str.replace(unescapeHTMLMap[src], src);
-                }
-
-                return str;
+                console.log(1);
+                return unescapeHTML(str);
             },
             idxToLetter: function (idx) {
                 return letterMap[idx];

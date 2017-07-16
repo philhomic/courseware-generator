@@ -13,9 +13,6 @@
       </div>
     </div>
     <div class="right">
-      <div class="test-wrapper">
-        <manaoEditor mClass="test"></manaoEditor>
-      </div>
       <div v-for="(page, pageIndex) in pages">
         <pageEditor :data="page" :pageIndex="pageIndex"></pageEditor>
       </div>
@@ -46,6 +43,9 @@
       },
       addCheckbox () {
         this.$store.commit('addCheckbox');
+      },
+      updateContent (htmlString) {
+        console.log(htmlString);
       }
     }
   };
@@ -94,15 +94,4 @@
         border-left: 1px solid #e0e0e0
         border-right: 1px solid #e0e0e0
         background-color: $app-bgcolor
-      .test-wrapper
-        width: 100%
-        min-height: 200px
-        .test
-          color: #000
-          max-width: 600px
-          margin: 10px auto
-          border: 1px solid #000
-          border-radius: 3px
-          line-height: 30px
-          padding: 0 5px
 </style>
