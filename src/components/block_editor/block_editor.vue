@@ -1,9 +1,9 @@
 <template>
   <div class="block-editor">
-    <div class="editor-wrapper" v-show="isEditing">
+    <div class="editor-wrapper" v-if="isEditing">
       <component  :is="block.type + 'Editor'" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block"  v-on:stopEditing="stopEditing"></component>
     </div>
-    <div class="preview-wrapper" v-show="!isEditing">
+    <div class="preview-wrapper" v-if="!isEditing">
       <div class="control">
         <ul>
           <li class="control_btn edit" @click="startEditing"><i class="icon-edit"></i></li>
@@ -89,7 +89,8 @@
         width: 58px
         background-color: #f5f5f5
         border-left: 1px solid #e0e0e0
-        transition: right 0.2s
+        border-bottom: 1px solid #e0e0e0
+        transition: right 0.2s ease
         ul
           display: flex
           box-orient: vertical

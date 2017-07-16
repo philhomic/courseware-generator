@@ -24,6 +24,9 @@ export default {
       options[payload.optionId].flag = false;
     }
   },
+  changeColumnCount (state, payload) {
+    state.course.pages[payload.pageIndex].blocks[payload.blockIndex].columnCount = payload.columnCount;
+  },
   addOption (state, payload) {
     state.course.pages[payload.pageIndex].blocks[payload.blockIndex].options.push({
       id: guid(),

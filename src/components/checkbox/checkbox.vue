@@ -1,26 +1,28 @@
 <!--单选题-->
 <template>
-    <div class='question question_checkbox border-1px' :class="{'submitted': submitted}">
-        <div class='inner'>
-            <div class='title' v-if='data.title' v-html='unescapeHTML(data.title)'></div>
-            <div class='description' v-if='data.description' v-html="unescapeHTML(data.description)"></div>
-            <div class='options' :id='data.id'>
-                <div class='option-item' v-for="(item, index) in data.options" ref='optionItems' @click.stop.prevent="selectOption(item.id)" :class="{'selected': isSelected(item.id), 'right-answer': submitted && selectedId.length !== 0 && selectCorrect(data, item.id), 'correct': submitted && isSelected(item.id) && selectCorrect(data, item.id), 'wrong': submitted && isSelected(item.id) && !selectCorrect(data, item.id)}">
-                  <input class="checkbox" type="checkbox" :id="item.id" :name="data.id">
-                  <label :for="item.id" class="option-item-label clearfix" ref='optionItemLabels'>
-                    <span class="option-index">{{idxToLetter(index)}}</span>
-                    <div class="option-text" v-html="unescapeHTML(item.text)"></div>
-                  </label>
-                </div>
-            </div>
-            <transition name="slide">
-              <div class='explanation' v-if='data.explanation && selectedId.length !== 0 && submitted'>
-                <i class="icon-key"></i>
-                <div class="explanation-text" v-html="unescapeHTML(data.explanation)"></div>
-              </div>
-            </transition>
+  <div class="block-wrapper border-1px">
+    <div class='question question_checkbox' :class="{'submitted': submitted}">
+      <div class='inner'>
+        <div class='title' v-if='data.title' v-html='unescapeHTML(data.title)'></div>
+        <div class='description' v-if='data.description' v-html="unescapeHTML(data.description)"></div>
+        <div class='options' :id='data.id'>
+          <div class='option-item' v-for="(item, index) in data.options" ref='optionItems' @click.stop.prevent="selectOption(item.id)" :class="{'selected': isSelected(item.id), 'right-answer': submitted && selectedId.length !== 0 && selectCorrect(data, item.id), 'correct': submitted && isSelected(item.id) && selectCorrect(data, item.id), 'wrong': submitted && isSelected(item.id) && !selectCorrect(data, item.id)}">
+            <input class="checkbox" type="checkbox" :id="item.id" :name="data.id">
+            <label :for="item.id" class="option-item-label clearfix" ref='optionItemLabels'>
+              <span class="option-index">{{idxToLetter(index)}}</span>
+              <div class="option-text" v-html="unescapeHTML(item.text)"></div>
+            </label>
+          </div>
         </div>
+        <transition name="slide">
+          <div class='explanation' v-if='data.explanation && selectedId.length !== 0 && submitted'>
+            <i class="icon-key"></i>
+            <div class="explanation-text" v-html="unescapeHTML(data.explanation)"></div>
+          </div>
+        </transition>
+      </div>
     </div>
+  </div>
 </template>
 
 <script type='text/ecmascript-6'>
@@ -38,10 +40,6 @@
         props: {
             data: {
                 type: Object
-            },
-            colNum: {
-                default: 1,
-                type: Number
             },
             submitted: {
                 default: false,
@@ -91,7 +89,12 @@
             };
         },
         mounted () {
-            switch (this.colNum) {
+            switch (this.data.columnCount) {
+                case 1:
+                    this.$refs.optionItems.forEach((item) => {
+                      item.style.width = '100%';
+                    });
+                    break;
                 case 2:
                     this.$refs.optionItems.forEach((item) => {
                         item.style.width = '50%';

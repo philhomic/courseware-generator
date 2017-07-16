@@ -18,9 +18,10 @@ export default {
       id: '',
       text: '选项2'
     }],
-      explanation: '单选题解析',
-      id: '',
-      isQuestion: true
+    explanation: '单选题解析',
+    id: '',
+    isQuestion: true,
+    columnCount: 1
   },
   checkbox: {
     type: 'checkbox',
@@ -39,6 +40,7 @@ export default {
     }],
     explanation: '多选题解析',
     id: '',
-    isQuestion: true
+    isQuestion: true,
+    columnCount: 1
   }
 };

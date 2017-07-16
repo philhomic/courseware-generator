@@ -110,11 +110,48 @@
             font-size: 14px
       &.row_split
         position: relative
-        margin-top: 15px
-        margin-bottom: 5px
+        margin-top: 30px
+        margin-bottom: 20px
         .split
           margin-top: 8px
           border-top: 1px solid #e0e0e0
+        a
+          position: relative
+          display: block
+          width: 124px
+          margin: -7px auto 0
+          text-align: center
+          background-color: #fafafa
+          padding-right: 30px
+          color: #000
+          font-size: 14px
+          .icon-circle-down
+            position: absolute
+            width: 30px
+            transition: all .2s ease
+            transform: rotate(0deg)
+            &.up
+              transition: all .2s ease
+              transform: rotate(180deg)
+      &.editor-adv
+        padding: 5px
+        .row
+          margin-top: 10px
+          margin-bottom: 10px
+          label
+          margin-right: 50px
+          min-width: 150px
+          display: inline-block
+          select
+            background-color: #fff
+            border: 1px solid #e0e0e0
+            box-sizing: border-box
+            margin-right: 20px
+        &.slide-enter-active
+          transition: all .2s ease
+          height: 30px
+        &.slide-enter, .slide-leave-to
+          height: 0
       &.editor_control
         text-align: center
         .editor_confirm_btn, .editor_cancel_btn
