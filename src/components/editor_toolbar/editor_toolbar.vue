@@ -13,7 +13,7 @@
     props: {
       tools: {
         type: Array,
-        default: function () { return ['bold', 'italic', 'underline', 'superscript', 'subscript', 'H1', 'H2', 'H3', 'image']; }
+        default: function () { return ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'H1', 'H2', 'H3', 'image']; }
       }
     },
     methods: {
@@ -26,6 +26,9 @@
           case 'superscript':
           case 'subscript':
             document.execCommand(tool, false);
+            break;
+          case 'strikethrough':
+            document.execCommand('strikeThrough', false);
             break;
           case 'H1':
           case 'H2':
