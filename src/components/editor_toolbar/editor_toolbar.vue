@@ -49,6 +49,7 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .toolbar
+    display: none
     position: absolute
     top: 0
     left: 0
