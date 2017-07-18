@@ -5,20 +5,20 @@ export default {
   },
   radio: {
     type: 'radio',
-      title: '单选题',
-      description: '单选题备注',
+      title: '&lt;p&gt;单选题&lt;&#x2f;p&gt;',
+      description: '&lt;p&gt;单选题备注&lt;&#x2f;p&gt;',
       assess: {
       options: {
       }
     },
     options: [{
       id: '',
-      text: '选项1'
+      text: '&lt;p&gt;选项1&lt;&#x2f;p&gt;'
     }, {
       id: '',
-      text: '选项2'
+      text: '&lt;p&gt;选项2&lt;&#x2f;p&gt;'
     }],
-    explanation: '单选题解析',
+    explanation: '&lt;p&gt;单选题解析&lt;&#x2f;p&gt;',
     id: '',
     isQuestion: true,
     columnCount: 1
@@ -26,19 +26,19 @@ export default {
   checkbox: {
     type: 'checkbox',
     title: '&lt;p&gt;多选题&lt;&#x2f;p&gt;',
-    description: '多选题备注',
+    description: '&lt;p&gt;多选题备注&lt;&#x2f;p&gt;',
     assess: {
       options: {
       }
     },
     options: [{
       id: '',
-      text: '选项1'
+      text: '&lt;p&gt;选项1&lt;&#x2f;p&gt;'
     }, {
       id: '',
-      text: '选项2'
+      text: '&lt;p&gt;选项2&lt;&#x2f;p&gt;'
     }],
-    explanation: '多选题解析',
+    explanation: '&lt;p&gt;多选题解析&lt;&#x2f;p&gt;',
     id: '',
     isQuestion: true,
     columnCount: 1

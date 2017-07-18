@@ -19,18 +19,19 @@
 
     </div>
     <!--<router-view></router-view>-->
+    <editorToolbar></editorToolbar>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import pageEditor from '@/components/page_editor/page_editor';
-  import manaoEditor from '@/components/manao_editor/manao_editor';
+  import editorToolbar from '@/components/editor_toolbar/editor_toolbar';
 
  export default {
     name: 'app',
     components: {
       pageEditor,
-      manaoEditor
+      editorToolbar
     },
    computed: {
       pages () {

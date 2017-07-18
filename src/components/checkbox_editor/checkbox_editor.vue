@@ -4,16 +4,14 @@
       <div class="row editor_title">
         <label class="row_title">题目</label>
         <div class="row_content">
-          <manaoEditor contenteditable="true" mClass="inline_editor" ref="title" :data="data.title">
-            <!--{{unescapeHTML(data.title)}}-->
-          </manaoEditor>
+          <div contenteditable="true" class="inline_editor" ref="title" v-html="unescapeHTML(data.title)" v-edit>
+          </div>
         </div>
       </div>
       <div class="row editor_description">
         <label class="row_title">备注</label>
         <div class="row_content">
-          <div contenteditable="true" class="inline_editor" ref="description">
-            {{unescapeHTML(data.description)}}
+          <div contenteditable="true" class="inline_editor" ref="description" v-html="unescapeHTML(data.description)" v-edit>
           </div>
         </div>
       </div>
@@ -25,8 +23,7 @@
           <ul class="normal_options_list">
             <li class="option_item" v-for="(option, index) in data.options">
               <div class="option_input_wrap">
-                <div class="inline_editor option_text" contenteditable="true" ref="options">
-                  {{unescapeHTML(option.text)}}
+                <div class="inline_editor option_text" contenteditable="true" ref="options" v-html="unescapeHTML(option.text)" v-edit>
                 </div>
               </div>
               <a class="btn_del_option" href="javascript:;" @click="deleteOption(index)">×</a>
@@ -48,8 +45,7 @@
       <div class="row editor_explanation">
         <label class="row_title">解析</label>
         <div class="row_content">
-          <div contenteditable="true" class="inline_editor" ref="explanation">
-            {{unescapeHTML(data.explanation)}}
+          <div contenteditable="true" class="inline_editor" ref="explanation" v-html="unescapeHTML(data.explanation)" v-edit>
           </div>
         </div>
       </div>
@@ -85,7 +81,6 @@
 
 <script type="text/ecmascript-6">
   import {clone, escapeHTML, unescapeHTML} from '@/assets/js/util';
-   import manaoEditor from '@/components/manao_editor/manao_editor';
 
   let oldData;
 
@@ -102,9 +97,6 @@
       return {
         showAdvSetting: false
       };
-    },
-    components: {
-       manaoEditor
     },
     mounted () {
       oldData = clone(this.data);
@@ -150,9 +142,7 @@
         let options = this.$refs.options;
         let columnCount = parseInt(this.$refs.columnCount.value);
 
-        console.log(title);
-
-        newData.title = escapeHTML(title.htmlString);
+        newData.title = escapeHTML(title.innerHTML);
         newData.description = escapeHTML(description.innerHTML);
         newData.explanation = escapeHTML(explanation.innerHTML);
         newData.options.forEach((option, index) => {

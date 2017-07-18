@@ -7,6 +7,20 @@ import store from './store';
 import './assets/stylus/index.styl';
 
 Vue.config.productionTip = false;
+Vue.directive('edit', {
+  inserted: function (el) {
+    let editorPos = el.getBoundingClientRect();
+    let toolbar = document.getElementsByClassName('toolbar')[0];
+    el.addEventListener('focus', function (ev) {
+      toolbar.style.top = editorPos.bottom + 'px';
+      toolbar.style.left = editorPos.left + 'px';
+      toolbar.style.display = 'block';
+    });
+    el.addEventListener('blur', function (ev) {
+      toolbar.style.display = 'none';
+    });
+  }
+});
 
 /* eslint-disable no-new */
 new Vue({

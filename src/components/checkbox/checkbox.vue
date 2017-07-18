@@ -46,7 +46,6 @@
         },
         methods: {
             unescapeHTML: function (str) {
-                console.log(1);
                 return unescapeHTML(str);
             },
             idxToLetter: function (idx) {
