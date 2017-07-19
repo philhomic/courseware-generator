@@ -1,0 +1,11 @@
+.block-wrapper.border-1px
+    .question.block.question_radio(:class="{'submitted': submitted}")
+        .inner
+            .title(v-if='data.title' v-html='unescapeHTML(data.title)')
+            .description(v-if='data.description' v-html="unescapeHTML(data.description)")
+            block options
+            transition(name="slide")
+                .explanation(v-if='data.explanation && selectedId !== "" && submitted')
+                    i.icon-key
+                    .explanation-text(v-html="unescapeHTML(data.explanation)")
+

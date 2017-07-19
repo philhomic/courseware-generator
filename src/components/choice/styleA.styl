@@ -1,0 +1,110 @@
+@import '../../assets/stylus/base'
+@import '../../assets/stylus/mixin'
+
+.block-wrapper
+  width: 100%
+  border-1px(rgba(7, 17, 27, 0.1))
+  .question
+    width: 100%
+    max-width: $question-max-width
+    min-width: 320px
+    margin-left: auto
+    margin-right: auto
+    padding: 10px 0
+    .inner
+      position: relative
+      margin-left: 20px
+      margin-right: 20px
+      font-family: $question-text-font-family
+      .title
+        margin: 5px 0
+        font-size: 16px
+        line-height: 28px
+      .description
+        margin: 10px 0
+        line-height: 20px
+        font-size: 14px
+        font-style: italic
+      .options
+        line-height: 20px
+        font-size: 0
+        .option-item
+          display: inline-block
+          box-sizing: border-box
+          width: 100%
+          .checkbox
+            display: none
+          .option-item-label
+            display: block
+            vertical-align: top
+            padding: 12px 0
+            overflow: hidden
+            cursor: pointer
+            .option-index
+              width: 24px
+              height: 24px
+              border-radius: 50%
+              float: left
+              font-size: 16px
+              line-height: 24px
+              font-family: $question-option-index-font-family
+              color: $question-option-index-color
+              background-color: $question-option-index-bgcolor
+              text-align: center
+            .option-text
+              margin-left: 30px
+              padding-right: 10px
+              font-size: 16px
+              line-height: 24px
+              color: $question-option-text-color
+              img
+                max-width: 100%
+          &.selected .option-index
+            color: $question-option-index-color-selected
+            background-color: $question-option-index-bgcolor-selected
+      .explanation
+        position: relative
+        padding: 12px 12px 12px 5px
+        margin: 10px 0
+        line-height: 20px
+        font-size: 14px
+        border-radius: 3px
+        color: $question-explanation-text-color
+        background-color: $question-explanation-bgcolor
+        border: $question-explanation-border
+        &:before
+          content: ''
+          display: block
+          position: absolute
+          top: -10px
+          left: 10px
+          border-bottom: 10px solid $question-explanation-bgcolor
+          border-left: 5px solid transparent
+          border-right: 5px solid transparent
+          width: 0
+          height: 0
+        &.slide-enter-active
+          transition: all .1s ease
+        &.slide-enter
+          padding: 0 12px 0px 5px
+          line-height: 0
+        i
+          display: block
+          float: left
+          width: 20px
+          height: 20px
+          line-height: 20px
+          text-align: center
+          color: $question-explanation-icon-color
+        .explanation-text
+          margin-left: 25px
+          line-height: 20px
+    &.submitted
+      .option-item.selected.correct, .option-item.right-answer
+        .option-index
+          background-color: $question-option-index-bgcolor-selected-correct !important
+          color: $question-option-index-color-selected-correct !important
+      .option-item.selected.wrong
+        .option-index
+          background-color: $question-option-index-bgcolor-selected-wrong !important
+          color: $question-option-index-color-selected-wrong !important
