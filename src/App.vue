@@ -13,7 +13,6 @@
       </div>
     </div>
     <div class="right">
-      <choiceBase :data="pages[0].blocks[0]" :submitted="true"></choiceBase>
       <div v-for="(page, pageIndex) in pages">
         <pageEditor :data="page" :pageIndex="pageIndex"></pageEditor>
       </div>
@@ -27,14 +26,12 @@
 <script type="text/ecmascript-6">
   import pageEditor from '@/components/page_editor/page_editor';
   import editorToolbar from '@/components/editor_toolbar/editor_toolbar';
-  import choiceBase from '@/components/choice/checkbox';
 
  export default {
     name: 'app',
     components: {
       pageEditor,
-      editorToolbar,
-      choiceBase
+      editorToolbar
     },
    computed: {
       pages () {

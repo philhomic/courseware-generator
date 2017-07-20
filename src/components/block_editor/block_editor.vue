@@ -19,8 +19,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import radio from '@/components/radio/radio';
-  import checkbox from '@/components/checkbox/checkbox';
+  import radio from '@/components/choice/radio/radio';
+  import checkbox from '@/components/choice/checkbox/checkbox';
   import checkboxEditor from '@/components/checkbox_editor/checkbox_editor';
 
   export default {

@@ -4,10 +4,11 @@
 </template>
 
 <script type='text/ecmascript-6'>
-    import {unescapeHTML, idxToLetter} from '@/assets/js/util';
+    import {unescapeHTML, idxToLetter, hasContent} from '@/assets/js/util';
 
     // 以单选题的业务逻辑作为基础模板
     export default {
+        // props 所有选择题型通用
         props: {
             data: {
                 type: Object
@@ -28,22 +29,22 @@
             idxToLetter: function (idx) {
                 return idxToLetter(idx);
             },
-            selectOption: function (id) {
-                this.selectedId = id;
+            hasContent: function (htmlString) {
+              return hasContent(htmlString);
             },
-            isSelected: function (id) {
-                return this.selectedId === id;
-            },
+            // 判断选择正确，所有选择题型通用
             selectCorrect: function (data, id) {
                 return data.assess.options[id] && data.assess.options[id].flag === true;
             }
         },
         data () {
             return {
+                // 注意，单选题默认selectedId为空字符串；多选题默认selectedId为空数组
                 selectedId: ''
             };
         },
         mounted () {
+            // 选项分列显示，radio 和 checkbox 通用，select 题型要重置
             switch (this.data.columnCount) {
                 case 1:
                     this.$refs.optionItems.forEach((item) => {
@@ -76,4 +77,5 @@
 </script>
 
 <style lang='stylus' rel='stylesheet/stylus'>
+    @import './choice_base'
 </style>

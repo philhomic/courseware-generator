@@ -1,11 +1,15 @@
 .block-wrapper.border-1px
-    .question.block.question_radio(:class="{'submitted': submitted}")
-        .inner
-            .title(v-if='data.title' v-html='unescapeHTML(data.title)')
-            .description(v-if='data.description' v-html="unescapeHTML(data.description)")
-            block options
-            transition(name="slide")
-                .explanation(v-if='data.explanation && selectedId !== "" && submitted')
-                    i.icon-key
-                    .explanation-text(v-html="unescapeHTML(data.explanation)")
+  .question.block(:class="{'submitted': submitted}")
+    .inner
+      // 题目标题
+      .title(v-if='hasContent(data.title)' v-html='unescapeHTML(data.title)')
+      // 题目备注
+      .description(v-if='hasContent(data.description)' v-html="unescapeHTML(data.description)")
+      // 题目选项
+      block options
+      //题目解析
+      transition(name="slide")
+        .explanation(v-if='hasContent(data.explanation) && selectedId !== "" && submitted')
+          i.icon-key
+          .explanation-text(v-html="unescapeHTML(data.explanation)")
 

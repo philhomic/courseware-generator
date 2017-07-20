@@ -73,11 +73,18 @@ function escapeHTML (string) {
   });
 }
 
+function hasContent (htmlString) {
+  let elem = document.createElement('div');
+  elem.innerHTML = unescapeHTML(htmlString);
+  return elem.textContent !== '';
+}
+
 export {
   guid,
   clone,
   updateJSON,
   unescapeHTML,
   idxToLetter,
-  escapeHTML
+  escapeHTML,
+  hasContent
 };

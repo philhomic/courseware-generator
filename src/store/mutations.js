@@ -18,10 +18,28 @@ export default {
   },
   addAnswer (state, payload) {
     let options = state.course.pages[payload.pageIndex].blocks[payload.blockIndex].assess.options;
-    if (!options[payload.optionId] || (options[payload.optionId].flag && options[payload.optionId].flag === false)) {
-      options[payload.optionId] = { flag: true };
-    } else {
-      options[payload.optionId].flag = false;
+    switch (payload.type) {
+      case 'single':
+        let keys = Object.keys(options);
+        if (keys.indexOf(payload.optionId) < 0) {
+          options[payload.optionId] = {flag: true};
+        } else {
+          keys.forEach((key) => {
+            if (key === payload.optionId) {
+              options[key].flag = true;
+            } else {
+              options[key].flag = false;
+            }
+          });
+        }
+        break;
+      case 'multiple':
+        if (!options[payload.optionId] || (options[payload.optionId].flag && options[payload.optionId].flag === false)) {
+          options[payload.optionId] = { flag: true };
+        } else {
+          options[payload.optionId].flag = false;
+        }
+        break;
     }
   },
   changeColumnCount (state, payload) {

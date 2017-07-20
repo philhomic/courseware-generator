@@ -1,82 +1,52 @@
-<template>
-  <div class="checkbox-editor">
-    <div class="inner">
-      <div class="row editor_title">
-        <label class="row_title">题目</label>
-        <div class="row_content">
-          <div contenteditable="true" class="inline_editor" ref="title" v-html="unescapeHTML(data.title)" v-edit>
-          </div>
-        </div>
-      </div>
-      <div class="row editor_description">
-        <label class="row_title">备注</label>
-        <div class="row_content">
-          <div contenteditable="true" class="inline_editor" ref="description" v-html="unescapeHTML(data.description)" v-edit>
-          </div>
-        </div>
-      </div>
-      <div class="row editor_options">
-        <ul class="options_list">
-          <div class="additional_setting_title">
-            <span class="correct_answer">正确答案</span>
-          </div>
-          <ul class="normal_options_list">
-            <li class="option_item" v-for="(option, index) in data.options">
-              <div class="option_input_wrap">
-                <div class="inline_editor option_text" contenteditable="true" ref="options" v-html="unescapeHTML(option.text)" v-edit>
-                </div>
-              </div>
-              <a class="btn_del_option" href="javascript:;" @click="deleteOption(index)">×</a>
-              <div class="additional_setting">
-                <input class="correct_answer" type="checkbox" @click="addAnswer(option.id, 'multiple')" :checked = "isChecked(option)">
-              </div>
-            </li>
-          </ul>
-          <li class="option_item option_create">
-            <div class="option_input_wrap" @click="addOption(data.options.length)">
-              <span class="add_option">新建选项</span>
-            </div>
-          </li>
-        </ul>
-        <div class="options_control">
-          <a class="add_options" href="javascript:;">批量修改</a>
-        </div>
-      </div>
-      <div class="row editor_explanation">
-        <label class="row_title">解析</label>
-        <div class="row_content">
-          <div contenteditable="true" class="inline_editor" ref="explanation" v-html="unescapeHTML(data.explanation)" v-edit>
-          </div>
-        </div>
-      </div>
-      <div class="row row_split">
-        <div class="split"></div>
-        <a class="toggle_adv_setting" href="javascript:;" @click="toggleAdvSetting">
-          <span class="txt">{{showAdvSetting ? '收起高级设置' : '展开高级设置'}}</span>
-          <i class="icon-circle-down" :class="{up: showAdvSetting}"></i>
-        </a>
-      </div>
-      <transition name="slide">
-        <div class="row editor-adv" v-show="showAdvSetting">
-          <div class="row">
-            <label>每行显示
-              <select name="maxRow" ref="columnCount" v-on:change="changeColumnCount">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </label>
-          </div>
-        </div>
-      </transition>
-      <div class="row editor_control">
-        <a class="editor_confirm_btn" href="javascript:;" @click="updateCheckbox">确定</a>
-        <a class="editor_cancel_btn" href="javascript:;" @click="cancelUpdateBlock">取消</a>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  .checkbox-editor
+    .inner
+      .row.editor_title
+        label.row_title 题目
+        .row_content
+          div(contenteditable="true" class="inline_editor" ref="title" v-html="unescapeHTML(data.title)" v-edit)
+      .row.editor_description
+        label.row_title 备注
+        .row_content
+          div(contenteditable="true" class="inline_editor" ref="description" v-html="unescapeHTML(data.description)" v-edit)
+      .row.editor_options
+        ul.options_list
+          .additional_setting_title
+            span.correct_answer 正确答案
+          ul.normal_options_list
+            li.option_item(v-for="(option, index) in data.options")
+              .option_input_wrap
+                .inline_editor.option_text(contenteditable="true" ref="options" v-html="unescapeHTML(option.text)" v-edit)
+              a.btn_del_option(href="javascript:;" @click="deleteOption(index)") ×
+              .additional_setting
+                input.correct_answer(type="checkbox" @click="addAnswer(option.id, 'multiple')" :checked = "isChecked(option)")
+          li.option_item.option_create
+            .option_input_wrap(@click="addOption(data.options.length)")
+              span.add_option 新建选项
+        .options_control
+          a.add_options(href="javascript:;") 批量修改
+      .row.editor_explanation
+        label.row_title 解析
+        .row_content
+          div(contenteditable="true" class="inline_editor" ref="explanation" v-html="unescapeHTML(data.explanation)" v-edit)
+      .row.row_split
+        .split"
+        a.toggle_adv_setting(href="javascript:;" @click="toggleAdvSetting")
+          span.txt {{showAdvSetting ? '收起高级设置' : '展开高级设置'}}
+          i.icon-circle-down(:class="{up: showAdvSetting}")
+      transition(name="slide")
+        .row.editor-adv(v-show="showAdvSetting")
+          .row
+            label 每行显示
+              select(name="maxRow" ref="columnCount" v-on:change="changeColumnCount"
+                option(value="1") 1
+                option(value="2") 2
+                option(value="3") 3
+                option(value="4") 4
+                option(value="5") 5
+      .row.editor_control
+        a.editor_confirm_btn(href="javascript:;" @click="updateCheckbox") 确定
+        a.editor_cancel_btn(href="javascript:;" @click="cancelUpdateBlock") 取消
 </template>
 
 <script type="text/ecmascript-6">
@@ -183,7 +153,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import '../../assets/stylus/base'
+  @import '../../../assets/stylus/base'
 
   .checkbox-editor
     width: 100%
