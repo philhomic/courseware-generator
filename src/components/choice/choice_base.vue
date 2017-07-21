@@ -37,12 +37,6 @@
                 return data.assess.options[id] && data.assess.options[id].flag === true;
             }
         },
-        data () {
-            return {
-                // 注意，单选题默认selectedId为空字符串；多选题默认selectedId为空数组
-                selectedId: ''
-            };
-        },
         mounted () {
             // 选项分列显示，radio 和 checkbox 通用，select 题型要重置
             switch (this.data.columnCount) {

@@ -1,16 +1,17 @@
 <template lang="pug">
     extends ../choice_base.pug
     block options
-        .options(:id='data.id')
-            .option-item(
-                v-for="(item, index) in data.options"
-                ref='optionItems'
-                @click="selectOption(item.id)"
-                :class="{'selected': isSelected(item.id), 'right-answer': isRightAnswer(data, item.id), 'correct': isCorrect(data, item.id), 'wrong': isWrong(data, item.id)}")
-                input.checkbox(type="radio" :id="item.id" :name="data.id")
-                label.option-item-label.clearfix(:for="item.id" ref='optionItemLabels')
-                    span.option-index {{idxToLetter(index)}}
-                    .option-text(v-html="unescapeHTML(item.text)")
+      .options(:id='data.id')
+        .option-item(
+          v-for="(item, index) in data.options"
+          ref='optionItems'
+          @click="selectOption(item.id)"
+          :class="{'selected': isSelected(item.id), 'right-answer':isRightAnswer(data, item.id), 'correct': isCorrect(data, item.id), 'wrong': isWrong(data, item.id)}"
+        )
+          input.checkbox(type="radio" :id="item.id" :name="data.id")
+          label.option-item-label.clearfix(:for="item.id" ref='optionItemLabels')
+            span.option-index {{idxToLetter(index)}}
+            .option-text(v-html="unescapeHTML(item.text)")
 </template>
 
 <script type="text/ecmascript-6">
@@ -34,6 +35,11 @@
             isWrong: function (data, id) {
               return this.submitted && this.isSelected(id) && !this.selectCorrect(data, id);
             }
+        },
+        data () {
+            return {
+                selectedId: ''
+            };
         }
     };
 </script>

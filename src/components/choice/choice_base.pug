@@ -9,7 +9,7 @@
       block options
       //题目解析
       transition(name="slide")
-        .explanation(v-if='hasContent(data.explanation) && selectedId !== "" && submitted')
+        .explanation(v-if='hasContent(data.explanation) && (Array.isArray(selectedId) ? selectedId.length : selectedId) && submitted')
           i.icon-key
           .explanation-text(v-html="unescapeHTML(data.explanation)")
 
