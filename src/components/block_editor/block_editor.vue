@@ -12,7 +12,7 @@
         </ul>
       </div>
       <div class="inner">
-        <component :is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block" :submitted="false"></component>
+        <component :is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block" :submitted="isSubmitted"></component>
       </div>
     </div>
   </div>
@@ -34,11 +34,18 @@
       },
       pageIndex: {
         type: Number
+      },
+      submitted: {
+        type: Boolean,
+        default: false
       }
     },
     computed: {
       currentPage () {
         return this.$store.state.course.pages[this.pageIndex];
+      },
+      isSubmitted () {
+        return this.submitted;
       }
     },
     components: {

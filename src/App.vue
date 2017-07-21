@@ -16,7 +16,6 @@
       <div v-for="(page, pageIndex) in pages">
         <pageEditor :data="page" :pageIndex="pageIndex"></pageEditor>
       </div>
-
     </div>
     <!--<router-view></router-view>-->
     <editorToolbar></editorToolbar>

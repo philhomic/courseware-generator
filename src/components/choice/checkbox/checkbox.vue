@@ -1,7 +1,7 @@
 <template lang="pug">
   extends ../choice_base.pug
   block options
-    .options(:id='data.id')
+    .options(:id='data.id' :class="{'no-option-index': !data.showOptionIndex}")
       .option-item(
         v-for="(item, index) in data.options"
         ref='optionItems' @click.stop.prevent="selectOption(item.id)"
@@ -43,5 +43,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import '../radio/radio'
+  @import '../radio/radio.styl'
 </style>

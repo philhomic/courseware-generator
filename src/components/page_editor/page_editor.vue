@@ -1,6 +1,9 @@
 <template>
   <div class="page">
-    <blockEditor v-for="(block, blockIndex) in currentPage.blocks" :block="block" :blockIndex="blockIndex" :pageIndex="pageIndex" :key="blockIndex"></blockEditor>
+    <blockEditor v-for="(block, blockIndex) in currentPage.blocks" :block="block" :blockIndex="blockIndex" :pageIndex="pageIndex" :key="blockIndex" ref="blockEditors"></blockEditor>
+    <div class="footer">
+      <a href="javascript:;" class="submitButton" @click="submitPage" v-show="currentPage.blocks.length > 0">提交</a>
+    </div>
   </div>
 </template>
 
@@ -27,6 +30,11 @@
     methods: {
       clone (json) {
         return JSON.parse(JSON.stringify(json));
+      },
+      submitPage () {
+        this.$refs.blockEditors.forEach((blockEditor) => {
+          blockEditor.submitted = true;
+        });
       }
     }
   };
@@ -42,4 +50,15 @@
   border-left: 1px solid #e0e0e0
   border-right: 1px solid #e0e0e0
   background-color: $app-bgcolor
+  .footer
+    background-color: #eee
+    padding: 20px 0
+    text-align: center
+    .submitButton
+      display: block
+      padding: 5px 30px
+      height: 24px
+      line-height: 24px
+      color: black
+      font-weight: 700
 </style>
