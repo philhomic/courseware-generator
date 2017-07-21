@@ -25,6 +25,11 @@
         mounted () {
             oldData = clone(this.data);
             this.$refs.columnCount.options[this.data.columnCount - 1].selected = true;
+            if (this.data.showOptionIndex) {
+                this.$refs.toggleOptionIndex.options[0].selected = true;
+            } else {
+                this.$refs.toggleOptionIndex.options[1].selected = true;
+            }
         },
         methods: {
             unescapeHTML (string) {
@@ -101,6 +106,13 @@
             },
             toggleAdvSetting () {
                 this.showAdvSetting = !this.showAdvSetting;
+            },
+            toggleOptionIndex () {
+                this.$store.commit('toggleOptionIndex', {
+                    pageIndex: this.$parent.pageIndex,
+                    blockIndex: this.blockIndex,
+                    showOptionIndex: !!parseInt(this.$refs.toggleOptionIndex.value)
+                });
             }
         }
     };

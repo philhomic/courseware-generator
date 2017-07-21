@@ -39,6 +39,10 @@ export default {
   changeColumnCount (state, payload) {
     state.course.pages[payload.pageIndex].blocks[payload.blockIndex].columnCount = payload.columnCount;
   },
+  toggleOptionIndex (state, payload) {
+    // console.log(payload.showOptionIndex);
+    state.course.pages[payload.pageIndex].blocks[payload.blockIndex].showOptionIndex = payload.showOptionIndex;
+  },
   addOption (state, payload) {
     state.course.pages[payload.pageIndex].blocks[payload.blockIndex].options.push({
       id: guid(),

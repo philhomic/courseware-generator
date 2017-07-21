@@ -21,7 +21,8 @@ export default {
     explanation: '&lt;p&gt;单选题解析&lt;&#x2f;p&gt;',
     id: '',
     isQuestion: true,
-    columnCount: 1
+    columnCount: 1,
+    showOptionIndex: true
   },
   checkbox: {
     type: 'checkbox',
@@ -41,6 +42,7 @@ export default {
     explanation: '&lt;p&gt;多选题解析&lt;&#x2f;p&gt;',
     id: '',
     isQuestion: true,
-    columnCount: 1
+    columnCount: 1,
+    showOptionIndex: true
   }
 };

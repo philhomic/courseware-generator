@@ -1,0 +1,83 @@
+@import '../choice_base'
+
+.block-wrapper
+  .question
+    .inner
+      .options
+        //line-height: 20px
+        font-size: 0
+        .option-item
+          display: inline-block
+          box-sizing: border-box
+          width: 100%
+          .checkbox
+            display: none
+          .option-item-label
+            display: block
+            vertical-align: top
+            padding: 12px 0
+            overflow: hidden
+            cursor: pointer
+            .option-index
+              width: 24px
+              height: 24px
+              border-radius: 50%
+              float: left
+              font-size: 16px
+              line-height: 24px
+              font-family: $question-option-index-font-family
+              color: $question-option-index-color
+              background-color: $question-option-index-bgcolor
+              text-align: center
+            .option-text
+              margin-left: 30px
+              padding-right: 10px
+              font-size: 16px
+              line-height: 24px
+              color: $question-option-text-color
+              img
+                max-width: 100%
+          &.selected
+            .option-item-label
+              .option-index
+                color: $question-option-index-color-selected
+                background-color: $question-option-index-bgcolor-selected
+        &.no-option-index
+          .option-item
+            .option-item-label
+              vertical-align: middle
+              padding: 5px
+              text-align: center
+              .option-text
+                margin: 0px
+                padding: 5px
+                border: 3px solid $question-option-noOptionIndex-border-color
+                background-color: $question-option-noOptionIndex-bgcolor
+                border-radius: 3px
+            &.selected
+              .option-item-label
+                .option-text
+                  border: 3px solid $question-option-noOptionIndex-border-color-selected
+                  color: $question-option-noOptionIndex-color-selected
+                  background-color: $question-option-noOptionIndex-bgcolor-selected
+    &.submitted
+      .options
+        .option-item.selected.correct, .option-item.right-answer
+          .option-index
+            background-color: $question-option-index-bgcolor-selected-correct !important
+            color: $question-option-index-color-selected-correct !important
+        .option-item.selected.wrong
+          .option-index
+            background-color: $question-option-index-bgcolor-selected-wrong !important
+            color: $question-option-index-color-selected-wrong !important
+        &.no-option-index
+          .option-item.selected.correct, .option-item.right-answer
+            .option-text
+              background-color: $question-option-noOptionIndex-bgcolor-selected-correct !important
+              border: 3px solid $question-option-noOptionIndex-border-color-selected-correct !important
+              color: $question-option-noOptionIndex-color-selected-correct !important
+          .option-item.selected.wrong
+            .option-text
+              background-color: $question-option-noOptionIndex-bgcolor-selected-wrong !important
+              border: 3px solid $question-option-noOptionIndex-bgcolor-selected-wrong !important
+              color: $question-option-noOptionIndex-color-selected-wrong !important

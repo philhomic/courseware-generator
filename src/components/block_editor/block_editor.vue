@@ -12,7 +12,7 @@
         </ul>
       </div>
       <div class="inner">
-        <component :is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block" :submitted="true"></component>
+        <component :is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block" :submitted="false"></component>
       </div>
     </div>
   </div>
