@@ -4,10 +4,10 @@
       <div id="menu" class="question_type">
         <ul>
           <li class="type_item radio">
-            <a href="javascript:;" @click="addRadio">单选题</a>
+            <a href="javascript:;" @click="addBlock('radio')">单选题</a>
           </li>
           <li class="type_item checkbox">
-            <a href="javascript:;" @click="addCheckbox">多选题</a>
+            <a href="javascript:;" @click="addBlock('checkbox')">多选题</a>
           </li>
         </ul>
       </div>
@@ -39,14 +39,10 @@
       }
    },
     methods: {
-      addRadio () {
-        this.$store.commit('addRadio');
-      },
-      addCheckbox () {
-        this.$store.commit('addCheckbox');
-      },
-      updateContent (htmlString) {
-        console.log(htmlString);
+      addBlock (type) {
+        this.$store.commit('addBlock', {
+          type: type
+        });
       }
     }
   };

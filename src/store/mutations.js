@@ -2,19 +2,14 @@ import data from '@/assets/js/data';
 import {guid, clone, updateJSON} from '@/assets/js/util';
 
 export default {
-  addRadio (state) {
+  addBlock (state, payload) {
     let currentPage = state.course.pages[state.currentPageIndex];
-    let radioData = clone(data.radio);
-    updateJSON(radioData, 'id', guid);
-    currentPage.blocks.push(radioData);
-    currentPage.questionCount ++;
-  },
-  addCheckbox (state) {
-    let currentPage = state.course.pages[state.currentPageIndex];
-    let checkboxData = clone(data.checkbox);
-    updateJSON(checkboxData, 'id', guid);
-    currentPage.blocks.push(checkboxData);
-    currentPage.questionCount ++;
+    let d = clone(data[payload.type]);
+    updateJSON(d, 'id', guid);
+    currentPage.blocks.push(d);
+    if (d.isQuestion) {
+      currentPage.questionCount ++;
+    }
   },
   addAnswer (state, payload) {
     let options = state.course.pages[payload.pageIndex].blocks[payload.blockIndex].assess.options;
@@ -24,14 +19,13 @@ export default {
         if (keys.indexOf(payload.optionId) < 0) {
           options[payload.optionId] = {flag: true};
         } else {
-          keys.forEach((key) => {
-            if (key === payload.optionId) {
-              options[key].flag = true;
-            } else {
-              options[key].flag = false;
-            }
-          });
+          options[payload.optionId].flag = false;
         }
+        keys.forEach((key) => {
+          if (key !== payload.optionId) {
+            options[key].flag = false;
+          }
+        });
         break;
       case 'multiple':
         if (!options[payload.optionId] || (options[payload.optionId].flag && options[payload.optionId].flag === false)) {

@@ -7,8 +7,7 @@
                 ref='optionItems'
                 @click="selectOption(item.id)"
                 :class="{'selected': isSelected(item.id), 'right-answer': isRightAnswer(data, item.id), 'correct': isCorrect(data, item.id), 'wrong': isWrong(data, item.id)}")
-                input.checkbox(type="radio" :id="item.id" :name="data.id"
-            )
+                input.checkbox(type="radio" :id="item.id" :name="data.id")
                 label.option-item-label.clearfix(:for="item.id" ref='optionItemLabels')
                     span.option-index {{idxToLetter(index)}}
                     .option-text(v-html="unescapeHTML(item.text)")

@@ -20,8 +20,9 @@
 
 <script type="text/ecmascript-6">
   import radio from '@/components/choice/radio/radio';
+  import radioEditor from '@/components/choice/choice_editor/singleOption_editor';
   import checkbox from '@/components/choice/checkbox/checkbox';
-  import checkboxEditor from '@/components/checkbox_editor/checkbox_editor';
+  import checkboxEditor from '@/components/choice/choice_editor/multipleOption_editor';
 
   export default {
     props: {
@@ -43,7 +44,8 @@
     components: {
       radio,
       checkbox,
-      checkboxEditor
+      checkboxEditor,
+      radioEditor
     },
     methods: {
       startEditing () {
