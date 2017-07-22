@@ -1,10 +1,8 @@
-<template>
-  <div class="page">
-    <blockEditor v-for="(block, blockIndex) in currentPage.blocks" :block="block" :blockIndex="blockIndex" :pageIndex="pageIndex" :key="blockIndex" ref="blockEditors"></blockEditor>
-    <div class="footer">
-      <a href="javascript:;" class="submitButton" @click="submitPage" v-show="currentPage.blocks.length > 0">提交</a>
-    </div>
-  </div>
+<template lang="pug">
+  .page
+    blockEditor(v-for="(block, blockIndex) in currentPage.blocks" :block="block" :blockIndex="blockIndex" :pageIndex="pageIndex" :key="blockIndex" ref="blockEditors")
+    .footer(v-show="currentPage.blocks.length > 0")
+      a(href="javascript:;" class="submitButton" @click="submitPage") 提交
 </template>
 
 <script type="text/ecmascript-6">

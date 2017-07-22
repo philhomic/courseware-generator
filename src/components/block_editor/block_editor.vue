@@ -23,6 +23,7 @@
   import radioEditor from '@/components/choice/choice_editor/singleOption_editor';
   import checkbox from '@/components/choice/checkbox/checkbox';
   import checkboxEditor from '@/components/choice/choice_editor/multipleOption_editor';
+  import selectsingle from '@/components/choice/selectsingle/selectsingle';
 
   export default {
     props: {
@@ -51,8 +52,10 @@
     components: {
       radio,
       checkbox,
+      selectsingle,
       checkboxEditor,
-      radioEditor
+      radioEditor,
+      selectsingleEditor: radioEditor
     },
     methods: {
       startEditing () {

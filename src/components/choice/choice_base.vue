@@ -38,7 +38,7 @@
             }
         },
         mounted () {
-            // 选项分列显示，radio 和 checkbox 通用，select 题型要重置
+            // 选项分列显示，radio 和 checkbox 通用，selectsingle 题型要重置
             switch (this.data.columnCount) {
                 case 1:
                     this.$refs.optionItems.forEach((item) => {

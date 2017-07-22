@@ -79,6 +79,11 @@ function hasContent (htmlString) {
   return elem.textContent !== '';
 }
 
+function filterHTMLMarkup (string) {
+  let reg = /&amp;|&lt;|&gt;|&quot|&apos|&#x2F/g;
+  return string.replace(reg, '');
+}
+
 export {
   guid,
   clone,
@@ -86,5 +91,6 @@ export {
   unescapeHTML,
   idxToLetter,
   escapeHTML,
-  hasContent
+  hasContent,
+  filterHTMLMarkup
 };

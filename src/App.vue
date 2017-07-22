@@ -9,6 +9,9 @@
           <li class="type_item checkbox">
             <a href="javascript:;" @click="addBlock('checkbox')">多选题</a>
           </li>
+          <li class="type_item select">
+            <a href="javascript:;" @click="addBlock('selectsingle')">下拉题</a>
+          </li>
         </ul>
       </div>
     </div>
