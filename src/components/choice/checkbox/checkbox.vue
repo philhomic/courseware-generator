@@ -34,9 +34,20 @@
         return this.submitted && this.selectedId.length !== 0 && this.selectCorrect(data, id);
       }
     },
+    computed: {
+      doneGood: function () {
+        this.selectedId.forEach(function (id, index) {
+          if (!this.selectedCorrect(this.data, id)) {
+            return false;
+          }
+        });
+        return true;
+      }
+    },
     data () {
       return {
-        selectedId: []
+        selectedId: [],
+        doneCorrect: this.doneGood
       };
     }
   };

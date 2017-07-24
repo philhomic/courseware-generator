@@ -30,6 +30,7 @@
             } else {
                 this.$refs.toggleOptionIndex.options[1].selected = true;
             }
+            console.log(this.data.type);
         },
         methods: {
             unescapeHTML (string) {

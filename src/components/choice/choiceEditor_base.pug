@@ -28,7 +28,7 @@
       label.row_title 解析
       .row_content
         div(contenteditable="true" class="inline_editor" ref="explanation" v-html="unescapeHTML(data.explanation)" v-edit="")
-    .row.row_split
+    .row.row_split(v-show="data.type==='radio'||data.type==='checkbox'")
       .split
       a.toggle_adv_setting(href="javascript:;" @click="toggleAdvSetting")
         span.txt {{showAdvSetting ? '收起高级设置' : '展开高级设置'}}

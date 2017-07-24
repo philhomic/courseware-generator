@@ -36,9 +36,15 @@
               return this.submitted && this.isSelected(id) && !this.selectCorrect(data, id);
             }
         },
+        computed: {
+          doneGood: function () {
+            return this.selectCorrect(this.data, this.selectedId);
+          }
+        },
         data () {
             return {
-                selectedId: ''
+                selectedId: '',
+                doneCorrect: this.doneGood
             };
         }
     };
