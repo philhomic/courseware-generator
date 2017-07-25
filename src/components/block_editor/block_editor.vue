@@ -20,10 +20,11 @@
 
 <script type="text/ecmascript-6">
   import radio from '@/components/choice/radio/radio';
-  import radioEditor from '@/components/choice/choice_editor/singleOption_editor';
+  import radioEditor from '@/components/choice/choice_editor/radio_editor';
   import checkbox from '@/components/choice/checkbox/checkbox';
-  import checkboxEditor from '@/components/choice/choice_editor/multipleOption_editor';
+  import checkboxEditor from '@/components/choice/choice_editor/checkbox_editor';
   import selectsingle from '@/components/choice/selectsingle/selectsingle';
+  import selectsingleEditor from '@/components/choice/choice_editor/selectsingle_editor';
 
   export default {
     props: {
@@ -55,7 +56,7 @@
       selectsingle,
       checkboxEditor,
       radioEditor,
-      selectsingleEditor: radioEditor
+      selectsingleEditor
     },
     methods: {
       startEditing () {
