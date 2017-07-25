@@ -20,7 +20,7 @@
         <pageEditor :data="page" :pageIndex="pageIndex"></pageEditor>
       </div>
     </div>
-    <!--<router-view></router-view>-->
+    <router-view></router-view>
     <editorToolbar></editorToolbar>
   </div>
 </template>
@@ -84,7 +84,7 @@
       margin-left: 250px
       border-left: 1px solid #e0e0e0
       background: #eee
-      .page
+      .page-editor
         width: 100%
         max-width: 1000px
         min-width: 320px
