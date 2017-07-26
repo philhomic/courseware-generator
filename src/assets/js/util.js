@@ -1,4 +1,5 @@
 import shortid from 'shortid';
+import Vue from 'vue';
 
 const unescapeHTMLMap = {
   '&': /&amp;/gi,
@@ -84,6 +85,16 @@ function filterHTMLMarkup (string) {
   return string.replace(reg, '');
 }
 
+function refreshQuestionNumber (page) {
+  let idx = 0;
+  page.blocks.forEach(function (block) {
+    if (block.isQuestion) {
+      idx += 1;
+      Vue.set(block, 'questionNumber', idx);
+    }
+  });
+}
+
 export {
   guid,
   clone,
@@ -92,5 +103,6 @@ export {
   idxToLetter,
   escapeHTML,
   hasContent,
-  filterHTMLMarkup
+  filterHTMLMarkup,
+  refreshQuestionNumber
 };

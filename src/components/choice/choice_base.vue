@@ -5,6 +5,7 @@
 
 <script type='text/ecmascript-6'>
     import {unescapeHTML, idxToLetter, hasContent} from '@/assets/js/util';
+    import questionNumber from '@/components/question_number/question_number';
 
     // 以单选题的业务逻辑作为基础模板
     export default {
@@ -21,6 +22,9 @@
                 default: '',
                 type: String
             }
+        },
+        components: {
+          questionNumber
         },
         methods: {
             unescapeHTML: function (str) {

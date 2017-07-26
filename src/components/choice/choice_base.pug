@@ -1,4 +1,5 @@
 .block-wrapper.border-1px
+  questionNumber(:idx="data.questionNumber")
   .question.block(:class="{'submitted': submitted}")
     .inner
       // 题目标题
@@ -7,7 +8,7 @@
       .description(v-if='hasContent(data.description)' v-html="unescapeHTML(data.description)")
       // 题目选项
       block options
-      //题目解析
+      // 题目解析
       transition(name="slide")
         .explanation(v-if='hasContent(data.explanation) && (Array.isArray(selectedId) ? selectedId.length : selectedId) && submitted')
           i.icon-key

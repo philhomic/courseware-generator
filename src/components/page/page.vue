@@ -22,7 +22,6 @@
     },
     computed: {
       currentPage () {
-        console.log(this.$route.params);
         return this.$store.state.course.pages[this.$route.params.pageIndex];
       }
     },
@@ -36,9 +35,6 @@
         return JSON.parse(JSON.stringify(json));
       },
       submitPage () {
-//        this.$refs.blockEditors.forEach((blockEditor) => {
-//          blockEditor.submitted = true;
-//        });
         this.isSubmitted = true;
       }
     },
@@ -51,12 +47,15 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+@import '../../assets/stylus/base'
+
 .page
   width: 100%
   max-width: 1000px
   min-width: 320px
   margin-left: auto
   margin-right: auto
+  margin-top: 60px
   border-left: 1px solid #e0e0e0
   border-right: 1px solid #e0e0e0
   background-color: $app-bgcolor

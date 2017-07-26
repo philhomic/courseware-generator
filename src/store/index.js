@@ -13,8 +13,7 @@ const store = new Vuex.Store({
       title: '课件生成器',
       pages: [{
         id: guid(),
-        blocks: [],
-        questionCount: 0
+        blocks: []
       }]
     },
     currentPageIndex: 0

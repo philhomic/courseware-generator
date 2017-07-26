@@ -1,5 +1,5 @@
 import data from '@/assets/js/data';
-import {guid, clone, updateJSON} from '@/assets/js/util';
+import {guid, clone, updateJSON, refreshQuestionNumber} from '@/assets/js/util';
 
 export default {
   addBlock (state, payload) {
@@ -7,9 +7,8 @@ export default {
     let d = clone(data[payload.type]);
     updateJSON(d, 'id', guid);
     currentPage.blocks.push(d);
-    if (d.isQuestion) {
-      currentPage.questionCount ++;
-    }
+    refreshQuestionNumber(currentPage);
+    console.log(currentPage);
   },
   addAnswer (state, payload) {
     let options = state.course.pages[payload.pageIndex].blocks[payload.blockIndex].assess.options;
@@ -59,13 +58,17 @@ export default {
     state.course.pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, clone(payload.oldData));
   },
   copyBlock (state, payload) {
-    let blocks = state.course.pages[payload.pageIndex].blocks;
+    let page = state.course.pages[payload.pageIndex];
+    let blocks = page.blocks;
     blocks.splice(payload.blockIndex, 0, clone(payload.data));
     let json = blocks[payload.blockIndex + 1];
     updateJSON(json, 'id', guid);
+    refreshQuestionNumber(page);
   },
   deleteBlock (state, payload) {
-    let blocks = state.course.pages[payload.pageIndex].blocks;
+    let page = state.course.pages[payload.pageIndex];
+    let blocks = page.blocks;
     blocks.splice(payload.blockIndex, 1);
+    refreshQuestionNumber(page);
   }
 };

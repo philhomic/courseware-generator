@@ -30,6 +30,7 @@
     .block-wrapper
         .block
             .inner
+                margin-bottom: 40px
                 .selectWrapper
                     position: relative
                     display: inline-block

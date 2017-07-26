@@ -83,14 +83,4 @@
     .right
       margin-left: 250px
       border-left: 1px solid #e0e0e0
-      background: #eee
-      .page-editor
-        width: 100%
-        max-width: 1000px
-        min-width: 320px
-        margin-left: auto
-        margin-right: auto
-        border-left: 1px solid #e0e0e0
-        border-right: 1px solid #e0e0e0
-        background-color: $app-bgcolor
 </style>

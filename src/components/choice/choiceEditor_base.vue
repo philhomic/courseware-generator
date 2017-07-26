@@ -5,6 +5,7 @@
 
 <script type='text/ecmascript-6'>
     import {clone, escapeHTML, unescapeHTML} from '@/assets/js/util';
+    import questionNumber from '@/components/question_number/question_number';
 
     let oldData;
 
@@ -16,6 +17,9 @@
             blockIndex: {
                 type: Number
             }
+        },
+        components: {
+          questionNumber
         },
         data () {
             return {
@@ -30,7 +34,6 @@
             } else {
                 this.$refs.toggleOptionIndex.options[1].selected = true;
             }
-            console.log(this.data.type);
         },
         methods: {
             unescapeHTML (string) {

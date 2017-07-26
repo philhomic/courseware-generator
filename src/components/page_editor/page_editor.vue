@@ -26,19 +26,13 @@
       blockEditor
     },
     methods: {
-      clone (json) {
-        return JSON.parse(JSON.stringify(json));
-      }
-//      submitPage () {
-//        this.$refs.blockEditors.forEach((blockEditor) => {
-//          blockEditor.submitted = true;
-//        });
-//      }
     }
   };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+@import '../../assets/stylus/base'
+
 .page-editor
   width: 100%
   max-width: 1000px
@@ -48,6 +42,8 @@
   border-left: 1px solid #e0e0e0
   border-right: 1px solid #e0e0e0
   background-color: $app-bgcolor
+  .block
+    min-height: 200px
   /*.footer*/
     /*background-color: #eee*/
     /*padding: 20px 0*/
