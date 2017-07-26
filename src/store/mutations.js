@@ -1,14 +1,36 @@
 import data from '@/assets/js/data';
-import {guid, clone, updateJSON, refreshQuestionNumber} from '@/assets/js/util';
+import {guid, clone, updateJSON, refreshQuestionNumber, storeToLocal} from '@/assets/js/util';
 
 export default {
   addBlock (state, payload) {
+    console.log(state);
+    console.log(window.localStorage);
     let currentPage = state.course.pages[state.currentPageIndex];
     let d = clone(data[payload.type]);
     updateJSON(d, 'id', guid);
     currentPage.blocks.push(d);
     refreshQuestionNumber(currentPage);
-    console.log(currentPage);
+    storeToLocal('course', state.course);
+  },
+  copyBlock (state, payload) {
+    let page = state.course.pages[payload.pageIndex];
+    let blocks = page.blocks;
+    blocks.splice(payload.blockIndex, 0, clone(payload.data));
+    let json = blocks[payload.blockIndex + 1];
+    updateJSON(json, 'id', guid);
+    refreshQuestionNumber(page);
+    storeToLocal('course', state.course);
+  },
+  deleteBlock (state, payload) {
+    let page = state.course.pages[payload.pageIndex];
+    let blocks = page.blocks;
+    blocks.splice(payload.blockIndex, 1);
+    refreshQuestionNumber(page);
+    storeToLocal('course', state.course);
+  },
+  updateCheckbox (state, payload) {
+    state.course.pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, clone(payload.newData));
+    storeToLocal('course', state.course);
   },
   addAnswer (state, payload) {
     let options = state.course.pages[payload.pageIndex].blocks[payload.blockIndex].assess.options;
@@ -51,24 +73,7 @@ export default {
   deleteOption (state, payload) {
     state.course.pages[payload.pageIndex].blocks[payload.blockIndex].options.splice(payload.optionIndex, 1);
   },
-  updateCheckbox (state, payload) {
-    state.course.pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, clone(payload.newData));
-  },
   cancelUpdateBlock (state, payload) {
     state.course.pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, clone(payload.oldData));
-  },
-  copyBlock (state, payload) {
-    let page = state.course.pages[payload.pageIndex];
-    let blocks = page.blocks;
-    blocks.splice(payload.blockIndex, 0, clone(payload.data));
-    let json = blocks[payload.blockIndex + 1];
-    updateJSON(json, 'id', guid);
-    refreshQuestionNumber(page);
-  },
-  deleteBlock (state, payload) {
-    let page = state.course.pages[payload.pageIndex];
-    let blocks = page.blocks;
-    blocks.splice(payload.blockIndex, 1);
-    refreshQuestionNumber(page);
   }
 };

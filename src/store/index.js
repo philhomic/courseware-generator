@@ -6,16 +6,24 @@ import {guid} from '@/assets/js/util';
 
 Vue.use(Vuex);
 
+let course;
+let storage = window.localStorage;
+if (storage && storage.getItem('course')) {
+  course = JSON.parse(storage.getItem('course'));
+} else {
+  course = {
+    id: guid(),
+    title: '课件生成器',
+    pages: [{
+      id: guid(),
+      blocks: []
+    }]
+  };
+}
+
 const store = new Vuex.Store({
   state: {
-    course: {
-      id: guid(),
-      title: '课件生成器',
-      pages: [{
-        id: guid(),
-        blocks: []
-      }]
-    },
+    course,
     currentPageIndex: 0
   },
   mutations,

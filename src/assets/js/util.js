@@ -95,6 +95,10 @@ function refreshQuestionNumber (page) {
   });
 }
 
+function storeToLocal (itemName, data) {
+  window.localStorage.setItem(itemName, JSON.stringify(data));
+}
+
 export {
   guid,
   clone,
@@ -104,5 +108,6 @@ export {
   escapeHTML,
   hasContent,
   filterHTMLMarkup,
-  refreshQuestionNumber
+  refreshQuestionNumber,
+  storeToLocal
 };
