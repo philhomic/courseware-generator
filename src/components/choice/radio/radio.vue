@@ -1,6 +1,7 @@
 <template lang="pug">
     extends ../choice_base.pug
     block options
+      questionNumber(:idx="data.questionNumber")
       .options(:id='data.id' :class="{'no-option-index': !data.showOptionIndex}")
         .option-item(
           v-for="(item, index) in data.options"
