@@ -62,7 +62,7 @@
       box-sizing: border-box
       width: 250px
       padding: 20px
-      background-color: #fafafa
+      background-color: rgb(251,251,251)
       #menu
         position: fixed
         width: 210px

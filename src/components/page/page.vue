@@ -1,9 +1,10 @@
 <template lang="pug">
   .page
+    .dec
     .blocks-wrapper(v-for="(block, blockIndex) in currentPage.blocks" :block="block" :blockIndex="blockIndex" :pageIndex="pageIndex" :key="blockIndex" ref="blockEditors")
       <component :is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block" :submitted="isSubmitted"></component>
     .footer(v-show="currentPage.blocks.length > 0")
-      a(href="javascript:;" class="submitButton" @click="submitPage") 提交
+      a(href="javascript:;" class="submitButton" @click="submitPage") 提 交
 </template>
 
 <script type="text/ecmascript-6">
@@ -50,26 +51,37 @@
 @import '../../assets/stylus/base'
 
 .page
+  position: relative
   width: 100%
   max-width: 1000px
   min-width: 320px
-  margin-left: auto
-  margin-right: auto
-  margin-top: 60px
-  border-left: 1px solid #e0e0e0
-  border-right: 1px solid #e0e0e0
+  margin: 60px auto
   background-color: $app-bgcolor
+  border-radius: 2px
+  box-shadow: 0 2px 5px rgba(0,0,0,.2)
+  .dec
+    position: fixed
+    z-index: -1
+    top: 0
+    left: 0
+    width: 100%
+    height:120px
+    background: rgb(10, 125, 192)
   .footer
-    background-color: #eee
-    padding: 20px 0
-    text-align: center
+    background-color: rgb(248, 248, 248)
+    text-align: right
     .submitButton
-      display: block
-      padding: 5px 30px
+      display: inline-block
+      background: rgb(213, 247, 251)
+      padding: 15px 30px
       height: 24px
       line-height: 24px
-      color: black
+      color: rgb(10, 125, 192);
       font-weight: 700
+      transition: color .5s
+      &:hover
+        color: #fff
+        background-color: rgb(10, 125, 192)
 
 .left
   display: none
