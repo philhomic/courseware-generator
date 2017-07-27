@@ -44,15 +44,4 @@
   background-color: $app-bgcolor
   .block
     min-height: 200px
-  /*.footer*/
-    /*background-color: #eee*/
-    /*padding: 20px 0*/
-    /*text-align: center*/
-    /*.submitButton*/
-      /*display: block*/
-      /*padding: 5px 30px*/
-      /*height: 24px*/
-      /*line-height: 24px*/
-      /*color: black*/
-      /*font-weight: 700*/
 </style>

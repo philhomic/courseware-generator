@@ -1,10 +1,29 @@
 import data from '@/assets/js/data';
 import {guid, clone, updateJSON, refreshQuestionNumber, storeToLocal} from '@/assets/js/util';
+import Vue from 'vue';
 
 export default {
+  addPage (state) {
+    let d = clone(data.page);
+    let pages = state.course.pages;
+    updateJSON(d, 'id', guid);
+    pages.push(d);
+    Vue.set(state, 'currentPageIndex', pages.length - 1);
+    storeToLocal('course', state.course);
+  },
+  deletePage (state, payload) {
+    let pages = state.course.pages;
+    let pageIndex = payload.pageIndex;
+    state.course.pages.splice(pageIndex, 1);
+    if (pages.length === 0) {
+      let d = clone(data.page);
+      updateJSON(d, 'id', guid);
+      pages.push(d);
+    }
+    Vue.set(state, 'currentPageIndex', 0);
+    storeToLocal('course', state.course);
+  },
   addBlock (state, payload) {
-    console.log(state);
-    console.log(window.localStorage);
     let currentPage = state.course.pages[state.currentPageIndex];
     let d = clone(data[payload.type]);
     updateJSON(d, 'id', guid);
