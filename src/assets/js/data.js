@@ -4,6 +4,18 @@ let page = {
   blocks: []
 };
 
+let unit = {
+  id: '',
+  title: '',
+  pages: [page]
+};
+
+let course = {
+  id: '',
+  title: '',
+  units: [unit]
+};
+
 let radio = {
   type: 'radio',
       title: '&lt;p&gt;单选题&lt;&#x2f;p&gt;',
@@ -36,6 +48,8 @@ selectsingle.options[0].text = '选项1';
 selectsingle.options[1].text = '选项2';
 
 export default {
+  course,
+  unit,
   page,
   radio,
   selectsingle,
