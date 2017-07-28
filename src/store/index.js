@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import mutations from './mutations';
 import actions from './actions';
-import {guid, updateJSON, clone} from '@/assets/js/util';
+import {guid, updateJSON, clone, storeToLocal} from '@/assets/js/util';
 import data from '@/assets/js/data';
 
 Vue.use(Vuex);
@@ -14,6 +14,7 @@ if (storage && storage.getItem('course')) {
 } else {
   course = clone(data.course);
   updateJSON(course, 'id', guid);
+  storeToLocal('course', course);
 }
 
 const store = new Vuex.Store({

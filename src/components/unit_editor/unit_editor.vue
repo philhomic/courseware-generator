@@ -34,8 +34,6 @@
         </div>
       </div>
     </div>
-
-    <router-view></router-view>
     <editorToolbar></editorToolbar>
   </div>
 </template>

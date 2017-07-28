@@ -82,9 +82,4 @@
       &:hover
         color: #fff
         background-color: rgb(10, 125, 192)
-
-.left
-  display: none
-.right
-  display: none
 </style>
