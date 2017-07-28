@@ -23,12 +23,14 @@
         </div>
       </div>
       <div class="right">
-        <ul class="page-tabs">
-          <li class="page-tab" v-for="(page, pageIndex) in pages" :class="{'selectedTab': pageIndex === currentPageIndex}" @click="selectThisTab(pageIndex)">第 {{pageIndex + 1}} 页 <i class="icon-cross" @click.prevent.stop="deletePage(pageIndex)"></i></li>
-          <li class="page-tab page-tab-plus" @click="addPage">+</li>
-        </ul>
-        <div class="page-editor-wrapper">
-          <pageEditor :data="page" :pageIndex="currentPageIndex"></pageEditor>
+        <div class="page-tabs-wrapper">
+          <ul class="page-tabs">
+            <li class="page-tab" v-for="(page, pageIndex) in pages" :class="{'selectedTab': pageIndex === currentPageIndex}" @click="selectThisTab(pageIndex)">第 {{pageIndex + 1}} 页 <i class="icon-cross" @click.prevent.stop="deletePage(pageIndex)"></i></li>
+            <li class="page-tab page-tab-plus" @click="addPage">+</li>
+          </ul>
+          <div class="page-editor-wrapper">
+            <pageEditor :data="page" :pageIndex="currentPageIndex"></pageEditor>
+          </div>
         </div>
       </div>
     </div>
@@ -159,43 +161,42 @@
         margin-left: 250px
         border-left: 1px solid #e0e0e0
         min-height: 1000px
-        .page-tabs
-          width: 100%
+        padding-top: 30px
+        .page-tabs-wrapper
           max-width: 1000px
           min-width: 320px
           margin-left: auto
           margin-right: auto
-          margin-top: 30px
-          font-size: 0
-          .page-tab
-            display: inline-block
-            background: #fff
-            width: 100px
-            height: 40px
-            line-height: 40px
-            text-align: center
-            font-size: 16px
+          .page-tabs
+            width: 100%
+            font-size: 0
+            .page-tab
+              display: inline-block
+              background: #fff
+              width: 100px
+              height: 40px
+              line-height: 40px
+              text-align: center
+              font-size: 16px
+              border: 1px solid #e0e0e0
+              border-bottom: 1px solid rgba(224, 224, 224, 1)
+              border-right: none
+              cursor: pointer
+              .icon-cross
+                font-size: 10px
+                border-radius: 50%
+                padding: 4px
+                background: #e0e0e0
+                color: #fff
+                &:hover
+                  background: red
+            .page-tab-plus
+              border-right: 1px solid #e0e0e0
+            .page-tab.selectedTab
+              border-bottom: 1px solid rgba(224, 224, 224, 0)
+          .page-editor-wrapper
+            margin-top: -1px
             border: 1px solid #e0e0e0
-            border-bottom: 1px solid rgba(224, 224, 224, 1)
-            border-right: none
-            cursor: pointer
-            .icon-cross
-              font-size: 10px
-              border-radius: 50%
-              padding: 4px
-              background: #e0e0e0
-              color: #fff
-              &:hover
-                background: red
-          .page-tab-plus
-            border-right: 1px solid #e0e0e0
-          .page-tab.selectedTab
-            border-bottom: 1px solid rgba(224, 224, 224, 0)
-        .page-editor-wrapper
-          max-width: 1000px
-          min-width: 320px
-          margin-left: auto
-          margin-right: auto
-          margin-top: -1px
-          border-top: 1px solid #e0e0e0
+            min-height: 200px
+            background-color: #fff
 </style>
