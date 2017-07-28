@@ -23,7 +23,7 @@
     },
     computed: {
       currentPage () {
-        return this.$store.state.course.units[this.$store.state.currentUnitIndex].pages[this.$route.params.pageIndex];
+        return this.$store.state.course.units[this.$route.params.unitIndex].pages[this.$route.params.pageIndex];
       }
     },
     components: {

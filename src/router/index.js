@@ -13,7 +13,7 @@ export default new Router({
       component: unitEditor
     },
     {
-      path: '/page/:pageIndex',
+      path: '/unit/:unitIndex/page/:pageIndex',
       name: 'page',
       component: page
     }
