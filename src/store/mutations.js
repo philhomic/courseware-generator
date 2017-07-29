@@ -69,7 +69,7 @@ export default {
     refreshQuestionNumber(page);
     storeToLocal('course', state.course);
   },
-  updateCheckbox (state, payload) {
+  updateBlock (state, payload) {
     state.course.units[state.currentUnitIndex].pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, clone(payload.newData));
     storeToLocal('course', state.course);
   },

@@ -67,7 +67,7 @@
                     optionIndex: optionIndex
                 });
             },
-            updateCheckbox () {
+            updateBlock () {
                 let newData = clone(this.data);
                 let title = this.$refs.title;
                 let description = this.$refs.description;
@@ -83,7 +83,7 @@
                 });
                 newData.columnCount = columnCount;
 
-                this.$store.commit('updateCheckbox', {
+                this.$store.commit('updateBlock', {
                     pageIndex: this.$parent.pageIndex,
                     blockIndex: this.blockIndex,
                     newData: newData
