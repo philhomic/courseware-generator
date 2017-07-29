@@ -75,5 +75,4 @@
 </script>
 
 <style lang='stylus' rel='stylesheet/stylus'>
-    @import './choice_base'
 </style>

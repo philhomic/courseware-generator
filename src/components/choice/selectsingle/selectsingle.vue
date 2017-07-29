@@ -31,10 +31,10 @@
   .block-wrapper
     .block
       .inner
-        margin-bottom: 40px
         .selectWrapper
           position: relative
           display: inline-block
+          margin-bottom: 20px
           select.options
             font-size: 14px
     .block.submitted

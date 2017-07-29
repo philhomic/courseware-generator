@@ -12,5 +12,4 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import '../choiceEditor_base'
 </style>

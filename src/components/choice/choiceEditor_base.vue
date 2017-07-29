@@ -1,6 +1,5 @@
-<!--单选题-->
 <template lang="pug">
-    include choiceEditor_base.pug
+  include choiceEditor_base.pug
 </template>
 
 <script type='text/ecmascript-6'>
@@ -123,5 +122,4 @@
 </script>
 
 <style lang='stylus' rel='stylesheet/stylus'>
-    @import './choiceEditor_base'
 </style>
