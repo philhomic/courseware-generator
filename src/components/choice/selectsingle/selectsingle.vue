@@ -38,7 +38,7 @@
           margin-bottom: 20px
           select.options
             font-size: 14px
-          &.submitted.doneCorrect
+          &.submitted.hasDone.doneCorrect
             &:after
               display: block
               position: absolute
@@ -50,7 +50,7 @@
               color: $question-option-index-bgcolor-selected-correct
             select
               border: 3px solid $question-option-index-bgcolor-selected-correct
-          &.submitted.doneWrong
+          &.submitted.hasDone.doneWrong
             &:after
               display: block
               position: absolute
