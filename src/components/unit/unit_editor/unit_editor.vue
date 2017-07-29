@@ -39,7 +39,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import pageEditor from '@/components/page_editor/page_editor';
+  import pageEditor from '@/components/page/page_editor/page_editor';
   import editorToolbar from '@/components/editor_toolbar/editor_toolbar';
 
   export default {

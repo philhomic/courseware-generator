@@ -4,7 +4,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import blockEditor from '@/components/block_editor/block_editor';
+  import blockEditor from '@/components/block/block_editor/block_editor';
 
   export default {
     props: {
@@ -29,8 +29,8 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-@import '../../assets/stylus/base'
-@import '../../assets/stylus/mixin'
+@import '../../../assets/stylus/base'
+@import '../../../assets/stylus/mixin'
 
 .page-editor
   width: 100%

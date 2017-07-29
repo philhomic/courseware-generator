@@ -48,8 +48,8 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-@import '../../assets/stylus/base'
-@import '../../assets/stylus/mixin'
+@import '../../../assets/stylus/base'
+@import '../../../assets/stylus/mixin'
 
 .page
   position: relative
