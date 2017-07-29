@@ -2,7 +2,7 @@
   extends ../choice_base.pug
   block options
     questionNumber(:idx="data.questionNumber")
-    .selectWrapper(:class="{'doneCorrect': doneGood, 'doneWrong': !doneGood}")
+    .selectWrapper(:class="{'doneCorrect': doneGood, 'doneWrong': !doneGood, 'submitted': submitted}")
       select.options(:id='data.id' @change="selectOption" ref="select")
         option.option-item(disabled selected) --请选择--
         option.option-item(
@@ -38,30 +38,28 @@
           margin-bottom: 20px
           select.options
             font-size: 14px
-    .block.submitted
-      .inner
-        .selectWrapper.doneCorrect
-          &:after
-            display: block
-            position: absolute
-            right: -10px
-            bottom: -12px
-            content: "\ea10"
-            font-size: 20px
-            font-family: 'cw'
-            color: $question-option-index-bgcolor-selected-correct
-          select
-            border: 3px solid $question-option-index-bgcolor-selected-correct
-        .selectWrapper.doneWrong
-          &:after
-            display: block
-            position: absolute
-            right: -10px
-            bottom: -12px
-            font-size: 20px
-            content: "\ea0f"
-            font-family: 'cw'
-            color: $question-option-index-bgcolor-selected-wrong
-          select
-            border: 3px solid $question-option-index-bgcolor-selected-wrong
+          &.submitted.doneCorrect
+            &:after
+              display: block
+              position: absolute
+              right: -10px
+              bottom: -12px
+              content: "\ea10"
+              font-size: 20px
+              font-family: 'cw'
+              color: $question-option-index-bgcolor-selected-correct
+            select
+              border: 3px solid $question-option-index-bgcolor-selected-correct
+          &.submitted.doneWrong
+            &:after
+              display: block
+              position: absolute
+              right: -10px
+              bottom: -12px
+              font-size: 20px
+              content: "\ea0f"
+              font-family: 'cw'
+              color: $question-option-index-bgcolor-selected-wrong
+            select
+              border: 3px solid $question-option-index-bgcolor-selected-wrong
 </style>

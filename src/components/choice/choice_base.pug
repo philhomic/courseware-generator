@@ -1,5 +1,5 @@
 .block-wrapper.border-1px
-  .question.block(:class="{'submitted': submitted}")
+  .question.block
     .inner
       // 题目标题
       .title(v-if='hasContent(data.title)' v-html='unescapeHTML(data.title)')

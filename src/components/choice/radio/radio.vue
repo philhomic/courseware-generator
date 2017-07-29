@@ -2,7 +2,7 @@
     extends ../choice_base.pug
     block options
       questionNumber(:idx="data.questionNumber")
-      .options(:id='data.id' :class="{'no-option-index': !data.showOptionIndex}")
+      .options(:id='data.id' :class="{'no-option-index': !data.showOptionIndex, 'submitted': submitted}")
         .option-item(
           v-for="(item, index) in data.options"
           ref='optionItems'
