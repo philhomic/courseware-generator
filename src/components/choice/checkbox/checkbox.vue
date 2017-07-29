@@ -2,7 +2,7 @@
   extends ../choice_base.pug
   block options
     questionNumber(:idx="data.questionNumber")
-    .options(:id='data.id' :class="{'no-option-index': !data.showOptionIndex, 'submitted': submitted}")
+    .options(:id='data.id' :class="{'no-option-index': !data.showOptionIndex, 'submitted': submitted, 'hasDone': hasDone}")
       .option-item(
         v-for="(item, index) in data.options"
         ref='optionItems' @click.stop.prevent="selectOption(item.id)"

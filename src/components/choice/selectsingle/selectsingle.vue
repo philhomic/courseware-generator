@@ -2,7 +2,7 @@
   extends ../choice_base.pug
   block options
     questionNumber(:idx="data.questionNumber")
-    .selectWrapper(:class="{'doneCorrect': doneGood, 'doneWrong': !doneGood, 'submitted': submitted}")
+    .selectWrapper(:class="{'doneCorrect': doneGood, 'doneWrong': !doneGood, 'submitted': submitted, 'hasDone': hasDone}")
       select.options(:id='data.id' @change="selectOption" ref="select")
         option.option-item(disabled selected) --请选择--
         option.option-item(
