@@ -47,11 +47,19 @@ selectsingle.type = 'selectsingle';
 selectsingle.options[0].text = '选项1';
 selectsingle.options[1].text = '选项2';
 
+let description = {
+  type: 'description',
+  title: '&lt;p&gt;段落说明&lt;/p&gt;',
+  description: '&lt;p&gt;备注&lt;/p&gt;',
+  id: ''
+};
+
 export default {
   course,
   unit,
   page,
   radio,
   selectsingle,
-  checkbox
+  checkbox,
+  description
 };

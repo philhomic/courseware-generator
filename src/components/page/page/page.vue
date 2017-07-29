@@ -11,6 +11,7 @@
   import radio from '@/components/choice/radio/radio';
   import checkbox from '@/components/choice/checkbox/checkbox';
   import selectsingle from '@/components/choice/selectsingle/selectsingle';
+  import description from '@/components/description/description/description';
 
   export default {
     props: {
@@ -29,7 +30,8 @@
     components: {
       radio,
       checkbox,
-      selectsingle
+      selectsingle,
+      description
     },
     methods: {
       clone (json) {
@@ -71,7 +73,8 @@
   //block的通用样式 title, description, explanation --start
   .block-wrapper
     width: 100%
-    border-1px(rgba(7, 17, 27, 0.1))
+    &.border-1px
+      border-1px(rgba(7, 17, 27, 0.1))
     .block
       width: 100%
       max-width: $question-max-width

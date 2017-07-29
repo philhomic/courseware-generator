@@ -11,6 +11,9 @@
         <div class="menu question_type">
           <ul>
             <li class="type_item">
+              <a href="javascript:;" @click="addBlock('description')">段落说明</a>
+            </li>
+            <li class="type_item">
               <a href="javascript:;" @click="addBlock('radio')">单选题</a>
             </li>
             <li class="type_item">

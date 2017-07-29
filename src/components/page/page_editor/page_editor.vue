@@ -216,7 +216,8 @@
         //block的通用样式 title, description, explanation --start
         .block-wrapper
           width: 100%
-          border-1px(rgba(7, 17, 27, 0.1))
+          &.border-1px
+            border-1px(rgba(7, 17, 27, 0.1))
           .block
             width: 100%
             max-width: $question-max-width
