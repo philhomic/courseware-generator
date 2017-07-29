@@ -20,6 +20,7 @@
     methods: {
       selectOption () {
         this.selectedId = this.$refs.select.value;
+        this.hasDone = true;
       }
     }
   };

@@ -23,6 +23,7 @@
         methods: {
             selectOption: function (id) {
                 this.selectedId = id;
+                this.hasDone = true;
             },
             isSelected: function (id) {
                 return this.selectedId === id;
@@ -45,6 +46,7 @@
         data () {
             return {
                 selectedId: '',
+                hasDone: false,
                 doneCorrect: this.doneGood
             };
         }

@@ -27,6 +27,7 @@
         } else {
           this.selectedId.splice(i, 1);
         }
+        this.hasDone = true;
       },
       isSelected: function (id) {
         return this.selectedId.indexOf(id) >= 0;
@@ -48,6 +49,7 @@
     data () {
       return {
         selectedId: [],
+        hasDone: false,
         doneCorrect: this.doneGood
       };
     }
