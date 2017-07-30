@@ -22,6 +22,9 @@
             <li class="type_item">
               <a href="javascript:;" @click="addBlock('selectsingle')">下拉题</a>
             </li>
+            <li class="type_item">
+              <a href="javascript:;" @click="addBlock('textQuestion')">文本题</a>
+            </li>
           </ul>
         </div>
       </div>

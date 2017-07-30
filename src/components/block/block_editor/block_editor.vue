@@ -27,6 +27,8 @@
   import selectsingleEditor from '@/components/choice/choice_editor/selectsingle_editor';
   import description from '@/components/description/description/description';
   import descriptionEditor from '@/components/description/description_editor/description_editor';
+  import textQuestion from '@/components/text/text/text';
+  import textQuestionEditor from '@/components/text/text_editor/text_editor';
 
   export default {
     props: {
@@ -57,7 +59,9 @@
       radioEditor,
       selectsingleEditor,
       description,
-      descriptionEditor
+      descriptionEditor,
+      textQuestion,
+      textQuestionEditor
     },
     methods: {
       startEditing () {

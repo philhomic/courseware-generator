@@ -18,9 +18,9 @@ let course = {
 
 let radio = {
   type: 'radio',
-      title: '&lt;p&gt;单选题&lt;&#x2f;p&gt;',
-      description: '&lt;p&gt;单选题备注&lt;&#x2f;p&gt;',
-      assess: {
+  title: '&lt;p&gt;单选题&lt;&#x2f;p&gt;',
+  description: '&lt;p&gt;单选题备注&lt;&#x2f;p&gt;',
+  assess: {
     options: {
     }
   },
@@ -54,6 +54,19 @@ let description = {
   id: ''
 };
 
+let textQuestion = {
+  type: 'textQuestion',
+  title: '&lt;p&gt;文本题&lt;/p&gt;',
+  description: '&lt;p&gt;文本题备注&lt;/p&gt;',
+  assess: {
+    answer: '文本题答案'
+  },
+  explanation: '&lt;p&gt;文本题解析&lt;&#x2f;p&gt;',
+  id: '',
+  isQuestion: true,
+  questionNumber: 0
+};
+
 export default {
   course,
   unit,
@@ -61,5 +74,6 @@ export default {
   radio,
   selectsingle,
   checkbox,
-  description
+  description,
+  textQuestion
 };

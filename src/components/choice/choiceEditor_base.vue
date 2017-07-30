@@ -38,8 +38,8 @@
       unescapeHTML (string) {
         return unescapeHTML(string);
       },
-      addAnswer (optionId, type) {
-        this.$store.commit('addAnswer', {
+      addOptionAnswer (optionId, type) {
+        this.$store.commit('addOptionAnswer', {
           type: type,
           pageIndex: this.$parent.pageIndex,
           blockIndex: this.blockIndex,

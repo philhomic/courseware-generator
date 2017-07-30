@@ -73,7 +73,7 @@ export default {
     state.course.units[state.currentUnitIndex].pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, clone(payload.newData));
     storeToLocal('course', state.course);
   },
-  addAnswer (state, payload) {
+  addOptionAnswer (state, payload) {
     let options = state.course.units[state.currentUnitIndex].pages[payload.pageIndex].blocks[payload.blockIndex].assess.options;
     switch (payload.type) {
       case 'single':

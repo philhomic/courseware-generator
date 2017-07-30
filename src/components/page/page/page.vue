@@ -12,6 +12,7 @@
   import checkbox from '@/components/choice/checkbox/checkbox';
   import selectsingle from '@/components/choice/selectsingle/selectsingle';
   import description from '@/components/description/description/description';
+  import textQuestion from '@/components/text/text/text';
 
   export default {
     props: {
@@ -31,7 +32,8 @@
       radio,
       checkbox,
       selectsingle,
-      description
+      description,
+      textQuestion
     },
     methods: {
       clone (json) {

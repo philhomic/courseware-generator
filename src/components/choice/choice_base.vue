@@ -17,10 +17,6 @@
       submitted: {
         default: false,
         type: Boolean
-      },
-      id: {
-        default: '',
-        type: String
       }
     },
     components: {
