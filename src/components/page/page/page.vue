@@ -83,7 +83,7 @@
       min-width: 320px
       margin-left: auto
       margin-right: auto
-      padding: 10px 0
+      padding: 20px 5px 20px 5px
       .inner
         position: relative
         margin-left: 20px
