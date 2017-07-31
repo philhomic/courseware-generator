@@ -36,7 +36,9 @@ let radio = {
   isQuestion: true,
   columnCount: 1,
   showOptionIndex: true,
-  questionNumber: 0
+  questionNumber: 0,
+  isRequired: true,
+  isScored: true
 };
 
 let checkbox = JSON.parse(JSON.stringify(radio).replace('单选题', '多选题'));
@@ -64,7 +66,9 @@ let textQuestion = {
   explanation: '&lt;p&gt;文本题解析&lt;&#x2f;p&gt;',
   id: '',
   isQuestion: true,
-  questionNumber: 0
+  questionNumber: 0,
+  isRequired: true,
+  isScored: true
 };
 
 export default {
