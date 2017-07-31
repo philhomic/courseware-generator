@@ -101,7 +101,7 @@
         .explanation
           position: relative
           padding: 12px 12px 12px 5px
-          margin: 10px 0
+          margin: 20px 0 10px 0
           line-height: 20px
           font-size: 14px
           border-radius: 3px

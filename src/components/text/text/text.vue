@@ -10,8 +10,8 @@
         .description(v-if='hasContent(data.description)' v-html="unescapeHTML(data.description)")
         // 答案输入框
         .input(:class="{'submitted': submitted}")
-          span(contenteditable ref="userAnswer" @change="updateUserAnswer" class="userInput")
-          span(v-if='submitted && data.assess.answer && !answerCorrect(data, userAnswer)') ( {{data.assess.answer}} )
+          span(contenteditable ref="userAnswer" @input="updateUserAnswer" class="userInput")
+          span(class="correctAnswer" v-if='submitted && data.assess.answer && !answerCorrect(data, userAnswer)') &nbsp;&nbsp;({{data.assess.answer}})
         // 题目解析
         transition(name="slide")
           .explanation(v-if='hasContent(data.explanation) && hasDone && submitted')
@@ -47,8 +47,13 @@
         return data.assess.answer === userAnswer;
       },
       updateUserAnswer: function () {
-        this.userAnswer = this.$refs.userAnswer.innerText;
-        console.log(this.$refs.userAnswer);
+        let userAnswer = this.$refs.userAnswer;
+        this.userAnswer = userAnswer.innerText;
+        if (userAnswer.clientWidth <= 100) {
+          userAnswer.style.display = 'inline-block';
+        } else {
+          userAnswer.style.display = 'inline';
+        }
       }
     },
     data () {
@@ -66,9 +71,15 @@
     .question.block
       .inner
         .input
-          span.userInput
+          span.userInput, span.correctAnswer
             display: inline-block
             min-width: 100px
-            border-bottom: 1px solid #e0e0e0
+            border-bottom: 2px solid #eee
+            line-height: 30px
+            font-size: 18px
+          span.correctAnswer
+            color: rgb(212, 90, 0)
+            font-family: RobotoCondensedBold
+            border-bottom: none
 
 </style>
