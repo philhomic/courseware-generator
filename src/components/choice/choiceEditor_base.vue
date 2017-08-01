@@ -5,10 +5,12 @@
 <script type='text/ecmascript-6'>
   import {clone, escapeHTML, unescapeHTML} from '@/assets/js/util';
   import questionNumber from '@/components/question_number/question_number';
+  import editor from '@/components/block/editor/editor';
 
   let oldData;
 
   export default {
+    extends: editor,
     props: {
       data: {
         type: Object
@@ -18,12 +20,8 @@
       }
     },
     components: {
-      questionNumber
-    },
-    data () {
-      return {
-        showAdvSetting: false
-      };
+      questionNumber,
+      editor
     },
     mounted () {
       oldData = clone(this.data);

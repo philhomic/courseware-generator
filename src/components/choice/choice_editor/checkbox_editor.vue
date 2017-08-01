@@ -1,5 +1,6 @@
 <template lang="pug">
   extends ../choiceEditor_base.pug
+
   block input
     input.correct_answer(type="checkbox" @click="addOptionAnswer(option.id, 'multiple')" :checked = "isChecked(option)")
 </template>

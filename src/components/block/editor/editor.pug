@@ -1,0 +1,26 @@
+.editor-wrapper
+  .inner
+    .row.editor_title
+      label.row_title 题目
+      .row_content
+        div(contenteditable="true" class="inline_editor" ref="title" v-html="unescapeHTML(data.title)" v-edit="")
+    .row.editor_description
+      label.row_title 备注
+      .row_content
+        div(contenteditable="true" class="inline_editor" ref="description" v-html="unescapeHTML(data.description)" v-edit="")
+    block editorContent
+    .row.editor_explanation
+      label.row_title 解析
+      .row_content
+        div(contenteditable="true" class="inline_editor" ref="explanation" v-html="unescapeHTML(data.explanation)" v-edit="")
+    .row.row_split
+      .split
+      a.toggle_adv_setting(href="javascript:;" @click="toggleAdvSetting")
+        span.txt {{showAdvSetting ? '收起高级设置' : '展开高级设置'}}
+        i.icon-circle-down(:class="{up: showAdvSetting}")
+    transition(name="slide")
+      .row.editor-adv(v-show="showAdvSetting")
+        block advSetting
+    .row.editor_control
+      a.editor_confirm_btn(href="javascript:;" @click="updateBlock") 确定
+      a.editor_cancel_btn(href="javascript:;" @click="cancelUpdateBlock") 取消

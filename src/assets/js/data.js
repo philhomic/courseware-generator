@@ -16,12 +16,13 @@ let course = {
   units: [unit]
 };
 
+// 每一种问题类型都会有的一些共有属性
 let questionBase = {
   id: '',
   isQuestion: true,
-  questionNumber: 0,
-  isRequired: true,
-  isScored: true
+  questionNumber: 0, // 用于记录问题编号
+  isRequired: true, // 用于记录该问题是否必答
+  isScored: true // 用于记录该问题是否计分
 };
 
 let radio = {
@@ -68,7 +69,7 @@ let textQuestion = {
   assess: {
     answer: '文本题答案'
   },
-  explanation: '&lt;p&gt;文本题解析&lt;&#x2f;p&gt;',
+  explanation: '&lt;p&gt;文本题解析&lt;&#x2f;p&gt;'
 };
 
 textQuestion = Object.assign(textQuestion, questionBase);
