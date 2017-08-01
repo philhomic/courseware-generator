@@ -8,6 +8,7 @@
   import editor from '@/components/block/editor/editor';
 
   let oldData;
+  let columnCount;
 
   export default {
     extends: editor,
@@ -25,12 +26,6 @@
     },
     mounted () {
       oldData = clone(this.data);
-      this.$refs.columnCount.options[this.data.columnCount - 1].selected = true;
-      if (this.data.showOptionIndex) {
-        this.$refs.toggleOptionIndex.options[0].selected = true;
-      } else {
-        this.$refs.toggleOptionIndex.options[1].selected = true;
-      }
     },
     methods: {
       unescapeHTML (string) {
@@ -71,15 +66,19 @@
         let description = this.$refs.description;
         let explanation = this.$refs.explanation;
         let options = this.$refs.options;
-        let columnCount = parseInt(this.$refs.columnCount.value);
-
+        if (this.data.type !== 'selectsingle') {
+          columnCount = parseInt(this.$refs.columnCount.value);
+        }
         newData.title = escapeHTML(title.innerHTML);
         newData.description = escapeHTML(description.innerHTML);
         newData.explanation = escapeHTML(explanation.innerHTML);
         newData.options.forEach((option, index) => {
           option.text = escapeHTML(options[index].innerHTML);
         });
-        newData.columnCount = columnCount;
+
+        if (this.data.type !== 'selectsingle') {
+          newData.columnCount = columnCount;
+        }
 
         this.$store.commit('updateBlock', {
           pageIndex: this.$parent.pageIndex,
@@ -104,9 +103,6 @@
         } else {
           return false;
         }
-      },
-      toggleAdvSetting () {
-        this.showAdvSetting = !this.showAdvSetting;
       },
       toggleOptionIndex () {
         this.$store.commit('toggleOptionIndex', {

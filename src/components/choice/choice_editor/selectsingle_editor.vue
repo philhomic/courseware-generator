@@ -6,9 +6,9 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import radioEditor from './radio_editor';
+  import choiceEditorBase from '../choiceEditor_base.vue';
   export default {
-    extends: radioEditor
+    extends: choiceEditorBase
   };
 </script>
 

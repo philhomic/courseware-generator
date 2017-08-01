@@ -102,8 +102,13 @@ export default {
     state.course.units[state.currentUnitIndex].pages[payload.pageIndex].blocks[payload.blockIndex].columnCount = payload.columnCount;
   },
   toggleOptionIndex (state, payload) {
-    // console.log(payload.showOptionIndex);
     state.course.units[state.currentUnitIndex].pages[payload.pageIndex].blocks[payload.blockIndex].showOptionIndex = payload.showOptionIndex;
+  },
+  toggleIsRequired (state, payload) {
+    state.course.units[state.currentUnitIndex].pages[payload.pageIndex].blocks[payload.blockIndex].isRequired = payload.isRequired;
+  },
+  toggleIsScored (state, payload) {
+    state.course.units[state.currentUnitIndex].pages[payload.pageIndex].blocks[payload.blockIndex].isScored = payload.isScored;
   },
   addOption (state, payload) {
     state.course.units[state.currentUnitIndex].pages[payload.pageIndex].blocks[payload.blockIndex].options.push({
