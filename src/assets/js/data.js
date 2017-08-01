@@ -19,7 +19,9 @@ let course = {
 let questionBase = {
   id: '',
   isQuestion: true,
-  questionNumber: 0
+  questionNumber: 0,
+  isRequired: true,
+  isScored: true
 };
 
 let radio = {
@@ -66,7 +68,7 @@ let textQuestion = {
   assess: {
     answer: '文本题答案'
   },
-  explanation: '&lt;p&gt;文本题解析&lt;&#x2f;p&gt;'
+  explanation: '&lt;p&gt;文本题解析&lt;&#x2f;p&gt;',
 };
 
 textQuestion = Object.assign(textQuestion, questionBase);
