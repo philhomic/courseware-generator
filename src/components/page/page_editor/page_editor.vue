@@ -175,17 +175,17 @@
           &.editor-adv
             padding: 5px
             .row
-              margin-top: 10px
-              margin-bottom: 10px
+              margin-top: 20px
+              margin-bottom: 20px
               label
-              margin-right: 50px
-              min-width: 150px
-              display: inline-block
-              select
-                background-color: #fff
-                border: 1px solid #e0e0e0
-                box-sizing: border-box
-                margin-right: 20px
+                margin-right: 50px
+                min-width: 150px
+                display: inline-block
+                select
+                  background-color: #fff
+                  border: 1px solid #e0e0e0
+                  box-sizing: border-box
+                  margin-right: 20px
             &.slide-enter-active
               transition: all .2s ease
               height: 30px
