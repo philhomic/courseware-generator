@@ -66,7 +66,7 @@
   };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
   .block-wrapper.textQuestion
     .question.block
       .inner

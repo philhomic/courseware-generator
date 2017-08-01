@@ -52,9 +52,6 @@ function unescapeHTML (str) {
   if (str === '' || str === null) {
     return '';
   }
-  // str = str.replace(/&#(x)?([\w\d]{0,5});/ig, function (full, hex, code) {
-  //   return String.fromCharCode(parseInt(code, hex ? 16 : 10));
-  // });
 
   for (var src in unescapeHTMLMap) {
     str = str.replace(unescapeHTMLMap[src], src);

@@ -16,6 +16,12 @@ let course = {
   units: [unit]
 };
 
+let questionBase = {
+  id: '',
+  isQuestion: true,
+  questionNumber: 0
+};
+
 let radio = {
   type: 'radio',
   title: '&lt;p&gt;单选题&lt;&#x2f;p&gt;',
@@ -32,12 +38,11 @@ let radio = {
     text: '&lt;p&gt;选项2&lt;&#x2f;p&gt;'
   }],
   explanation: '&lt;p&gt;单选题解析&lt;&#x2f;p&gt;',
-  id: '',
-  isQuestion: true,
   columnCount: 1,
-  showOptionIndex: true,
-  questionNumber: 0
+  showOptionIndex: true
 };
+
+radio = Object.assign(radio, questionBase);
 
 let checkbox = JSON.parse(JSON.stringify(radio).replace('单选题', '多选题'));
 checkbox.type = 'checkbox';
@@ -61,11 +66,10 @@ let textQuestion = {
   assess: {
     answer: '文本题答案'
   },
-  explanation: '&lt;p&gt;文本题解析&lt;&#x2f;p&gt;',
-  id: '',
-  isQuestion: true,
-  questionNumber: 0
+  explanation: '&lt;p&gt;文本题解析&lt;&#x2f;p&gt;'
 };
+
+textQuestion = Object.assign(textQuestion, questionBase);
 
 export default {
   course,
