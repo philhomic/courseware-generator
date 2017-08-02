@@ -113,6 +113,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
   .block-editor
     .editor-wrapper
+      cursor: auto
     .preview-wrapper
       position: relative
       overflow: hidden
