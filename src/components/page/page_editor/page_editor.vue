@@ -187,8 +187,10 @@
                   box-sizing: border-box
                   margin-right: 20px
             &.slide-enter-active
-              transition: all .2s ease
+              transition: all .1s
               height: 30px
+            &.slide-leave-active
+              transition: all .1s
             &.slide-enter, .slide-leave-to
               height: 0
           &.editor_control

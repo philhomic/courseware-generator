@@ -1,5 +1,5 @@
 <template>
-  <div class="block-editor">
+  <div class="block-editor" draggable="true" @dragleave="dragLeave(blockIndex, $event)" @dragstart="dragStart(blockIndex, $event)" @dragover.stop="allowDrop($event)" @drop="drop(blockIndex, $event)">
     <div class="editor-wrapper" v-if="isEditing">
       <component  :is="block.type + 'Editor'" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block"  v-on:stopEditing="stopEditing"></component>
     </div>
@@ -82,6 +82,24 @@
           pageIndex: this.$parent.pageIndex,
           blockIndex: this.blockIndex
         });
+      },
+      dragLeave (blockIndex, ev) {
+      },
+      dragStart (blockIndex, ev) {
+        ev.dataTransfer.setData('Text', blockIndex);
+      },
+      allowDrop (ev) {
+        ev.preventDefault();
+      },
+      drop (blockIndex, ev) {
+        this.allowDrop(ev);
+        let initialIndex = ev.dataTransfer.getData('Text');
+        let targetIndex = blockIndex;
+        this.$store.commit('resortBlock', {
+          initialIndex,
+          targetIndex,
+          pageIndex: this.$parent.pageIndex
+        });
       }
     },
     data () {
@@ -98,6 +116,7 @@
     .preview-wrapper
       position: relative
       overflow: hidden
+      cursor: move
       .control
         z-index: 2000
         position: absolute
@@ -125,6 +144,7 @@
             line-height: 58px
             text-align: center
             font-size: 22px
+            cursor: pointer
             &:hover
               background-color: rgb(71, 157, 230)
               color: #fff

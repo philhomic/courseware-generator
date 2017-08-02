@@ -121,5 +121,15 @@ export default {
   },
   cancelUpdateBlock (state, payload) {
     state.course.units[state.currentUnitIndex].pages[payload.pageIndex].blocks.splice(payload.blockIndex, 1, clone(payload.oldData));
+  },
+  resortBlock (state, payload) {
+    let initialIndex = payload.initialIndex;
+    let targetIndex = payload.targetIndex;
+    let pageIndex = payload.pageIndex;
+    let currentPage = state.course.units[state.currentUnitIndex].pages[pageIndex];
+    let temp = currentPage.blocks.splice(initialIndex, 1)[0];
+    currentPage.blocks.splice(targetIndex, 0, temp);
+    refreshQuestionNumber(currentPage);
+    storeToLocal('course', state.course);
   }
 };
