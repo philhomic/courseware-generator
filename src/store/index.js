@@ -1,4 +1,5 @@
 import Vue from 'vue';
+require('es6-promise').polyfill();
 import Vuex from 'vuex';
 import mutations from './mutations';
 import actions from './actions';
