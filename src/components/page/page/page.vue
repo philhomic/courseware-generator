@@ -1,6 +1,6 @@
 <template lang="pug">
   .page
-    .dec
+    .header
     .blocks-wrapper(v-for="(block, blockIndex) in currentPage.blocks" :block="block" :blockIndex="blockIndex" :pageIndex="pageIndex" :key="blockIndex" ref="blockEditors")
       <component :is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block" :submitted="isSubmitted"></component>
     .footer(v-show="currentPage.blocks.length > 0")
@@ -64,14 +64,14 @@
   background-color: $app-bgcolor
   border-radius: 2px
   box-shadow: 0 2px 5px rgba(0,0,0,.2)
-  .dec
+  .header
     position: fixed
     z-index: -1
     top: 0
     left: 0
     width: 100%
     height:120px
-    background: rgb(10, 125, 192)
+    background: $question-number-color
   //block的通用样式 title, description, explanation --start
   .block-wrapper
     width: 100%

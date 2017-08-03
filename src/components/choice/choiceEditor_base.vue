@@ -61,6 +61,20 @@
         });
       },
       updateBlock () {
+        let assessOptions = this.data.assess.options;
+        let hasAnswer = false;
+        if (this.data.isScored === true) {
+          for (let op in assessOptions) {
+            if (assessOptions.hasOwnProperty(op) && assessOptions[op].flag === true) {
+              hasAnswer = true;
+            }
+          }
+          if (!hasAnswer) {
+            alert('本题为计分题，不要忘记设置答案。');
+            return;
+          }
+        }
+
         let newData = clone(this.data);
         let title = this.$refs.title;
         let description = this.$refs.description;
