@@ -25,6 +25,9 @@
             <li class="type_item">
               <a href="javascript:;" @click="addBlock('textQuestion')">文本题</a>
             </li>
+            <li class="type_item">
+              <a href="javascript:;" @click="addBlock('blank')">填空题</a>
+            </li>
           </ul>
         </div>
       </div>

@@ -31,6 +31,7 @@ let radio = {
   description: '&lt;p&gt;单选题备注&lt;&#x2f;p&gt;',
   assess: {
     options: {
+      // id: {flag: true} 选择题对应id，然后后面立起flag为true的就是正确答案
     }
   },
   options: [{
@@ -74,6 +75,20 @@ let textQuestion = {
 
 textQuestion = Object.assign(textQuestion, questionBase);
 
+let blank = {
+  type: 'blank',
+  title: '&lt;p&gt;填空题&lt;/p&gt;',
+  description: '&lt;p&gt;填空题备注&lt;/p&gt;',
+  assess: {
+    answers: {
+      // id : [answer1, answer2] 每个id针对一个空格，后面的中括号中的第一个答案就是原本原文中的文本
+    }
+  },
+  explanation: '&lt;p&gt;填空题解析&lt;&#x2f;p&gt;'
+};
+
+blank = Object.assign(blank, questionBase);
+
 export default {
   course,
   unit,
@@ -82,5 +97,6 @@ export default {
   selectsingle,
   checkbox,
   description,
-  textQuestion
+  textQuestion,
+  blank
 };

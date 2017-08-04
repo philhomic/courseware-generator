@@ -13,6 +13,7 @@
   import selectsingle from '@/components/choice/selectsingle/selectsingle';
   import description from '@/components/description/description/description';
   import textQuestion from '@/components/text/text/text';
+  import blank from '@/components/blank/blank/blank';
 
   export default {
     props: {
@@ -33,7 +34,8 @@
       checkbox,
       selectsingle,
       description,
-      textQuestion
+      textQuestion,
+      blank
     },
     methods: {
       clone (json) {

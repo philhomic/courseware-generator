@@ -29,6 +29,8 @@
   import descriptionEditor from '@/components/description/description_editor/description_editor';
   import textQuestion from '@/components/text/text/text';
   import textQuestionEditor from '@/components/text/text_editor/text_editor';
+  import blank from '@/components/blank/blank/blank';
+  import blankEditor from '@/components/blank/blank_editor/blank_editor';
 
   export default {
     props: {
@@ -61,7 +63,9 @@
       description,
       descriptionEditor,
       textQuestion,
-      textQuestionEditor
+      textQuestionEditor,
+      blank,
+      blankEditor
     },
     methods: {
       startEditing () {
