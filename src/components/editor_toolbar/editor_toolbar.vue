@@ -13,7 +13,7 @@
     props: {
       tools: {
         type: Array,
-        default: function () { return ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'image']; }
+        default: function () { return ['bold', 'italic', 'underline', 'strikethrough', 'paragraph-left', 'paragraph-center', 'paragraph-right', 'superscript', 'subscript', 'image']; }
       }
     },
     methods: {
@@ -26,6 +26,13 @@
           case 'superscript':
           case 'subscript':
             document.execCommand(tool, false);
+            break;
+          case 'paragraph-left':
+          case 'paragraph-center':
+          case 'paragraph-right':
+            let dir = tool.split('-')[1];
+            let cmd = 'justify' + dir[0].toUpperCase() + dir.substring(1);
+            document.execCommand(cmd, false);
             break;
           case 'strikethrough':
             document.execCommand('strikeThrough', false);

@@ -75,7 +75,7 @@ function escapeHTML (string) {
 function hasContent (htmlString) {
   let elem = document.createElement('div');
   elem.innerHTML = unescapeHTML(htmlString);
-  return elem.textContent !== '';
+  return elem.textContent !== '' || elem.getElementsByTagName('img').length !== 0;
 }
 
 function filterHTMLMarkup (string) {
@@ -99,7 +99,10 @@ function storeToLocal (itemName, data) {
 
 function sanitize (htmlstring) {
   let cleanHTML = sanitizeHTML(htmlstring, {
-    allowedTags: sanitizeHTML.defaults.allowedTags.concat(['img', 'section', 'sup', 'sub', 'u'])
+    allowedTags: sanitizeHTML.defaults.allowedTags.concat(['img', 'section', 'sup', 'sub', 'u']),
+    allowedAttributes: {
+      '*': ['style', 'src', 'href', 'align', 'alt', 'center', 'bgcolor']
+    }
   });
   // console.log(cleanHTML);
   return cleanHTML;
