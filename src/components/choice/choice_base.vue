@@ -4,7 +4,7 @@
 </template>
 
 <script type='text/ecmascript-6'>
-  import {unescapeHTML, idxToLetter, hasContent} from '@/assets/js/util';
+  import {cleanHTML, idxToLetter, hasContent} from '@/assets/js/util';
   import questionNumber from '@/components/question_number/question_number';
 
   // 以单选题的业务逻辑作为基础模板
@@ -23,8 +23,8 @@
       questionNumber
     },
     methods: {
-      unescapeHTML: function (str) {
-        return unescapeHTML(str);
+      cleanHTML: function (str) {
+        return cleanHTML(str);
       },
       idxToLetter: function (idx) {
         return idxToLetter(idx);

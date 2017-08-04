@@ -2,14 +2,14 @@
   .question.block
     .inner
       // 题目标题
-      .title(v-if='hasContent(data.title)' v-html='unescapeHTML(data.title)')
+      .title(v-if='hasContent(data.title)' v-html='cleanHTML(data.title)')
       // 题目备注
-      .description(v-if='hasContent(data.description)' v-html="unescapeHTML(data.description)")
+      .description(v-if='hasContent(data.description)' v-html="cleanHTML(data.description)")
       // 题目选项
       block options
       // 题目解析
       transition(name="slide")
         .explanation(v-if='hasContent(data.explanation) && (Array.isArray(selectedId) ? selectedId.length : selectedId) && submitted')
           i.icon-key
-          .explanation-text(v-html="unescapeHTML(data.explanation)")
+          .explanation-text(v-html="cleanHTML(data.explanation)")
 

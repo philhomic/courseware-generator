@@ -75,6 +75,8 @@
               line-height: 36px
               background: #fff
               border: 1px solid #e0e0e0
+              img
+                max-width: 100%
           &.editor_options
             position: relative
             margin-top: 40px
@@ -104,6 +106,8 @@
                     line-height: 36px
                     background: #fff
                     border: 1px solid #e0e0e0
+                    img
+                      max-width: 100%
                 .btn_del_option
                   color: #999999
                   position: absolute

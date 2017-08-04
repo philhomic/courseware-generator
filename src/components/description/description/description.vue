@@ -2,12 +2,12 @@
   .block-wrapper
     .question.block
       .inner
-        .title(v-if='hasContent(data.title)' v-html='unescapeHTML(data.title)')
-        .description(v-if='hasContent(data.description)' v-html="unescapeHTML(data.description)")
+        .title(v-if='hasContent(data.title)' v-html='cleanHTML(data.title)')
+        .description(v-if='hasContent(data.description)' v-html="cleanHTML(data.description)")
 </template>
 
 <script type="text/ecmascript-6">
-  import {unescapeHTML, hasContent} from '@/assets/js/util';
+  import {cleanHTML, hasContent} from '@/assets/js/util';
 
   export default {
     props: {
@@ -20,8 +20,8 @@
       }
     },
     methods: {
-      unescapeHTML: function (str) {
-        return unescapeHTML(str);
+      cleanHTML: function (str) {
+        return cleanHTML(str);
       },
       hasContent: function (htmlString) {
         return hasContent(htmlString);

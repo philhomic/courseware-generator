@@ -3,6 +3,7 @@ include editor.pug
 </template>
 
 <script type="text/ecmascript-6">
+import {cleanHTML} from '@/assets/js/util';
 export default {
   mounted () {
     if (this.data.isRequired) {
@@ -33,6 +34,9 @@ export default {
         blockIndex: this.blockIndex,
         isScored: !!parseInt(this.$refs.isScored.value)
       });
+    },
+    cleanHTML (htmlstring) {
+      return cleanHTML(htmlstring);
     }
   },
   data () {

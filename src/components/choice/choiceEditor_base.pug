@@ -8,7 +8,7 @@ block editorContent
       ul.normal_options_list
         li.option_item(v-for="(option, index) in data.options")
           .option_input_wrap
-            .inline_editor.option_text(contenteditable="true" ref="options" v-html="unescapeHTML(option.text)" v-edit="")
+            .inline_editor.option_text(contenteditable="true" ref="options" v-html="cleanHTML(option.text)" v-edit="")
           a.btn_del_option(href="javascript:;" @click="deleteOption(index)") ×
           .additional_setting
             block input

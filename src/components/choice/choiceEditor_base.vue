@@ -3,7 +3,7 @@
 </template>
 
 <script type='text/ecmascript-6'>
-  import {clone, escapeHTML, unescapeHTML} from '@/assets/js/util';
+  import {clone, escapeHTML, cleanHTML} from '@/assets/js/util';
   import questionNumber from '@/components/question_number/question_number';
   import editor from '@/components/block/editor/editor';
 
@@ -28,8 +28,8 @@
       oldData = clone(this.data);
     },
     methods: {
-      unescapeHTML (string) {
-        return unescapeHTML(string);
+      cleanHTML (string) {
+        return cleanHTML(string);
       },
       addOptionAnswer (optionId, type) {
         this.$store.commit('addOptionAnswer', {

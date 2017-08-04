@@ -12,7 +12,7 @@
           input.checkbox(type="radio" :id="item.id" :name="data.id")
           label.option-item-label.clearfix(:for="item.id" ref='optionItemLabels')
             span.option-index(v-if="data.showOptionIndex") {{idxToLetter(index)}}
-            .option-text(v-html="unescapeHTML(item.text)")
+            .option-text(v-html="cleanHTML(item.text)")
 </template>
 
 <script type="text/ecmascript-6">

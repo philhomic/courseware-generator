@@ -11,7 +11,7 @@
         input.checkbox(type="checkbox" :id="item.id" :name="data.id")
         label(:for="item.id" class="option-item-label clearfix" ref='optionItemLabels')
           span.option-index(v-if="data.showOptionIndex") {{idxToLetter(index)}}
-          .option-text(v-html="unescapeHTML(item.text)")
+          .option-text(v-html="cleanHTML(item.text)")
 </template>
 
 <script type="text/ecmascript-6">
