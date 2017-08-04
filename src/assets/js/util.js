@@ -1,6 +1,5 @@
 import shortid from 'shortid';
 import Vue from 'vue';
-
 const sanitizeHTML = require('sanitize-html');
 
 const unescapeHTMLMap = {
@@ -100,7 +99,7 @@ function storeToLocal (itemName, data) {
 
 function sanitize (htmlstring) {
   let cleanHTML = sanitizeHTML(htmlstring, {
-    allowedTags: sanitizeHTML.defaults.allowedTags.concat(['img', 'section'])
+    allowedTags: sanitizeHTML.defaults.allowedTags.concat(['img', 'section', 'sup', 'sub', 'u'])
   });
   // console.log(cleanHTML);
   return cleanHTML;

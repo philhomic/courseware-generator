@@ -13,7 +13,7 @@
     props: {
       tools: {
         type: Array,
-        default: function () { return ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'H1', 'H2', 'H3', 'image']; }
+        default: function () { return ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'image']; }
       }
     },
     methods: {
@@ -29,11 +29,6 @@
             break;
           case 'strikethrough':
             document.execCommand('strikeThrough', false);
-            break;
-          case 'H1':
-          case 'H2':
-          case 'H3':
-            document.execCommand('formatBlock', false, tool.toLowerCase());
             break;
           case 'image':
             let url = prompt('请在此输入图片链接地址：', 'http://');

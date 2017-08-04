@@ -9,7 +9,6 @@ import './assets/stylus/index.styl';
 Vue.config.productionTip = false;
 Vue.directive('edit', {
   inserted: function (el, binding) {
-    // console.log(binding);
     var toolbar = document.getElementsByClassName('toolbar')[0];
     el.addEventListener('focus', function (ev) {
       var editor = ev.target;
