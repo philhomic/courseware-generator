@@ -4,18 +4,18 @@
       .row.editor_title
         label.row_title 说明
         .row_content
-          div(contenteditable="true" class="inline_editor" ref="title" v-html="sanitize(unescapeHTML(data.title))" v-edit="")
+          div(contenteditable="true" class="inline_editor" ref="title" v-html="cleanHTML(data.title)" v-edit="")
       .row.editor_description
         label.row_title 备注
         .row_content
-          div(contenteditable="true" class="inline_editor" ref="description" v-html="sanitize(unescapeHTML(data.description))" v-edit="")
+          div(contenteditable="true" class="inline_editor" ref="description" v-html="cleanHTML(data.description)" v-edit="")
       .row.editor_control
         a.editor_confirm_btn(href="javascript:;" @click="updateBlock") 确定
         a.editor_cancel_btn(href="javascript:;" @click="cancelUpdateBlock") 取消
 </template>
 
 <script type="text/ecmascript-6">
-  import {clone, escapeHTML, unescapeHTML, sanitize} from '@/assets/js/util';
+  import {clone, escapeHTML, cleanHTML} from '@/assets/js/util';
 
   let oldData;
 
@@ -32,11 +32,8 @@
       oldData = clone(this.data);
     },
     methods: {
-      unescapeHTML (string) {
-        return unescapeHTML(string);
-      },
-      sanitize (htmlstring) {
-        return sanitize(htmlstring);
+      cleanHTML (htmlstring) {
+        return cleanHTML(htmlstring);
       },
       updateBlock () {
         let newData = clone(this.data);
