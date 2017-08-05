@@ -48,4 +48,7 @@
         //block的通用样式 title, description, explanation --start
         @import '../../../assets/stylus/block.styl'
         //block的通用样式 --end
+        // 保证在编辑的preview下，block有足够的高度来显示右侧的工具栏
+        .block-wrapper
+          min-height: 200px
 </style>
