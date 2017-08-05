@@ -68,7 +68,7 @@ let textQuestion = {
   title: '&lt;p&gt;文本题&lt;/p&gt;',
   description: '&lt;p&gt;文本题备注&lt;/p&gt;',
   assess: {
-    answer: '文本题答案'
+    answers: ['答案1', '答案2']
   },
   explanation: '&lt;p&gt;文本题解析&lt;&#x2f;p&gt;'
 };

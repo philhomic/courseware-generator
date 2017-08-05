@@ -5,7 +5,7 @@
     .row.editor_answer
       label.row_title 答案
       .row_content
-        div(contenteditable="true" class="inline_editor" ref="answer") {{data.assess.answer}}
+        div(contenteditable="true" class="inline_editor" ref="answer") {{data.assess.answers.join(' | ')}}
 </template>
 
 <script type="text/ecmascript-6">
@@ -45,7 +45,7 @@
         newData.title = escapeHTML(title.innerHTML);
         newData.description = escapeHTML(description.innerHTML);
         newData.explanation = escapeHTML(explanation.innerHTML);
-        newData.assess.answer = answer.innerText;
+        newData.assess.answers = answer.innerText.split('|').map(function (a) { return a.trim(); });
 
         this.$store.commit('updateBlock', {
           pageIndex: this.$parent.pageIndex,

@@ -11,7 +11,7 @@
         // 答案输入框
         .input(:class="{'submitted': submitted}")
           span(contenteditable ref="userAnswer" @input="updateUserAnswer" class="userInput")
-          span(class="correctAnswer" v-if='submitted && data.assess.answer && !answerCorrect(data, userAnswer)') &nbsp;&nbsp;({{data.assess.answer}})
+          span(class="correctAnswer" v-if='submitted && data.assess.answers && !answerCorrect(data, userAnswer)') &nbsp;&nbsp;({{data.assess.answers[0]}})
         // 题目解析
         transition(name="slide")
           .explanation(v-if='hasContent(data.explanation) && hasDone && submitted')
@@ -44,7 +44,7 @@
         return hasContent(htmlString);
       },
       answerCorrect: function (data, userAnswer) {
-        return data.assess.answer === userAnswer;
+        return data.assess.answers.indexOf(userAnswer.trim()) !== -1;
       },
       updateUserAnswer: function () {
         let userAnswer = this.$refs.userAnswer;
