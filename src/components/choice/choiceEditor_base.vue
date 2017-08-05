@@ -63,6 +63,7 @@
       updateBlock () {
         let assessOptions = this.data.assess.options;
         let hasAnswer = false;
+        let hasScore = this.data.score;
         if (this.data.isScored === true) {
           for (let op in assessOptions) {
             if (assessOptions.hasOwnProperty(op) && assessOptions[op].flag === true) {
@@ -71,6 +72,10 @@
           }
           if (!hasAnswer) {
             alert('本题为计分题，不要忘记设置答案。');
+            return;
+          }
+          if (!hasScore) {
+            alert('请将分数设置为正确数值。');
             return;
           }
         }

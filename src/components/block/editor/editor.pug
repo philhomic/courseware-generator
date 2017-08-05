@@ -30,6 +30,8 @@
               select(name="isScored" ref="isScored" v-on:change="toggleIsScored")
                 option(value="1") 计分
                 option(value="0") 不计分
+            label(v-show="data.isScored") 分值
+              input(type="number" v-model.number="data.score")
     .row.editor_control
       a.editor_confirm_btn(href="javascript:;" @click="updateBlock") 确定
       a.editor_cancel_btn(href="javascript:;" @click="cancelUpdateBlock") 取消

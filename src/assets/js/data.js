@@ -22,7 +22,8 @@ let questionBase = {
   isQuestion: true,
   questionNumber: 0, // 用于记录问题编号
   isRequired: true, // 用于记录该问题是否必答
-  isScored: true // 用于记录该问题是否计分
+  isScored: true, // 用于记录该问题是否计分
+  score: 1
 };
 
 let radio = {
