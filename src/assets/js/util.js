@@ -97,11 +97,17 @@ function storeToLocal (itemName, data) {
   window.localStorage.setItem(itemName, JSON.stringify(data));
 }
 
-function sanitize (htmlstring) {
+function sanitize (htmlstring, hasStyle) {
+  let allowedAttributes;
+  if (hasStyle) {
+    allowedAttributes = ['style', 'src', 'href', 'align', 'alt', 'center', 'bgcolor'];
+  } else {
+    allowedAttributes = [];
+  }
   let cleanHTML = sanitizeHTML(htmlstring, {
     allowedTags: sanitizeHTML.defaults.allowedTags.concat(['img', 'section', 'sup', 'sub', 'u']),
     allowedAttributes: {
-      '*': ['style', 'src', 'href', 'align', 'alt', 'center', 'bgcolor']
+      '*': allowedAttributes
     }
   });
   // console.log(cleanHTML);
@@ -111,7 +117,11 @@ function sanitize (htmlstring) {
 // 凡是在编辑器中使用到了innerHTML的地方，都使用了该方法来过滤危险代码
 // 如果给可信任的人使用，可以将该函数中的sanitize去掉，使编辑器获得更大的灵活性
 function cleanHTML (htmlstring) {
-  return sanitize(unescapeHTML(htmlstring));
+  return sanitize(unescapeHTML(htmlstring), true);
+}
+
+function cleanHTMLCompletely (htmlstring) {
+  return sanitize(unescapeHTML(htmlstring), false);
 }
 
 export {
@@ -126,5 +136,6 @@ export {
   refreshQuestionNumber,
   storeToLocal,
   sanitize,
-  cleanHTML
+  cleanHTML,
+  cleanHTMLCompletely
 };

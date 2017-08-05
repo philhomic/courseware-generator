@@ -1,9 +1,9 @@
 <template lang="pug">
-include editor_without_toolbar.pug
+include editor_titleTextOnly.pug
 </template>
 
 <script type="text/ecmascript-6">
-import {cleanHTML} from '@/assets/js/util';
+import {cleanHTML, cleanHTMLCompletely} from '@/assets/js/util';
 export default {
   mounted () {
     if (this.data.isRequired) {
@@ -37,6 +37,9 @@ export default {
     },
     cleanHTML (htmlstring) {
       return cleanHTML(htmlstring);
+    },
+    cleanHTMLCompletely (htmlstring) {
+      return cleanHTMLCompletely(htmlstring);
     }
   },
   data () {
