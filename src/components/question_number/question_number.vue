@@ -28,12 +28,12 @@
       /*position: absolute*/
       /*top: 0px*/
       /*left: 0*/
-      height: 28px
-      line-height: 28px
+      height: $block-title-line-height
+      line-height: $block-title-line-height
       background-color: $question-number-bgcolor
       color: $question-number-color
       text-align: center
-      font-size: 14px
+      font-size: $block-title-font-size
       z-index: 100
       font-family: $question-number-text-font-family
       font-weight: 700

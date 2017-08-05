@@ -1,0 +1,60 @@
+.block-wrapper
+  width: 100%
+  &.border-1px
+    border-1px(rgba(7, 17, 27, 0.1))
+  .block
+    width: 100%
+    max-width: $block-max-width
+    min-width: 320px
+    margin-left: auto
+    margin-right: auto
+    padding: 20px 5px 20px 5px
+    .inner
+      position: relative
+      margin-left: 20px
+      margin-right: 20px
+      font-family: $block-text-font-family
+      line-height: $block-normal-line-height
+      font-size: $block-normal-font-size
+      .title
+        margin: 5px 0
+        font-family: $block-title-font-family
+        line-height: $block-title-line-height
+        font-size: $block-title-font-size
+      .description
+        margin: 10px 0
+        font-style: italic
+      .explanation
+        position: relative
+        padding: 12px 12px 12px 5px
+        margin: 20px 0 10px 0
+        border-radius: 3px
+        color: $question-explanation-text-color
+        background-color: $question-explanation-bgcolor
+        border: $question-explanation-border
+        &:before
+          content: ''
+          display: block
+          position: absolute
+          top: -10px
+          left: 10px
+          border-bottom: 10px solid $question-explanation-bgcolor
+          border-left: 5px solid transparent
+          border-right: 5px solid transparent
+          width: 0
+          height: 0
+        &.slide-enter-active
+          transition: all .1s ease
+        &.slide-enter
+          padding: 0 12px 0px 5px
+          line-height: 0
+        i
+          display: block
+          float: left
+          width: 20px
+          height: $block-normal-line-height
+          line-height: $block-normal-line-height
+          text-align: center
+          color: $question-explanation-icon-color
+        .explanation-text
+          margin-left: 25px

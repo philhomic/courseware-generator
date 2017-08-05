@@ -67,6 +67,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import '../../../assets/stylus/base.styl'
   .block-wrapper.textQuestion
     .question.block
       .inner
@@ -75,11 +76,11 @@
             display: inline-block
             min-width: 100px
             border-bottom: 2px solid #eee
-            line-height: 30px
-            font-size: 18px
+            line-height: $block-title-line-height
+            font-size: $block-title-font-size
           span.correctAnswer
             color: rgb(212, 90, 0)
-            font-family: RobotoCondensedBold
+            font-family: $block-title-font-family
             border-bottom: none
 </style>
 
