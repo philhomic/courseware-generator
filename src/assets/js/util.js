@@ -124,6 +124,10 @@ function cleanHTMLCompletely (htmlstring) {
   return sanitize(unescapeHTML(htmlstring), false);
 }
 
+function isNumber (n) {
+  return toString.call(n) === '[object ' + Number + ']';
+}
+
 export {
   guid,
   clone,
@@ -137,5 +141,6 @@ export {
   storeToLocal,
   sanitize,
   cleanHTML,
-  cleanHTMLCompletely
+  cleanHTMLCompletely,
+  isNumber
 };

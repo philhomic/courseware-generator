@@ -78,7 +78,7 @@ textQuestion = Object.assign(textQuestion, questionBase);
 
 let blank = {
   type: 'blank',
-  title: '&lt;p&gt;填空题&lt;/p&gt;',
+  title: '将填空内容(*答案1 | 答案2*)放在半角星号括号中即可。如果答案不唯一，则用竖线分隔。',
   description: '&lt;p&gt;填空题备注&lt;/p&gt;',
   assess: {
     answers: {

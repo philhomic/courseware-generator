@@ -2,7 +2,7 @@
   extends ../../block/editor/editor_titleTextOnly.pug
 
   block editorContent
-    div 这里是内容区
+    p 使用说明：将填空题全文录入题目输入框中，将需要改为填空的位置用(* ... *)括起来。如果答案不是唯一的，则用竖线 | 分隔。一道题中可以有多个填空位置。
 </template>
 
 <script type="text/ecmascript-6">
@@ -57,6 +57,9 @@
   };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-
+<style lang="stylus" rel="stylesheet/stylus" scoped>
+  p
+    color: #aaa
+    font-size: 14px
+    line-height: 20px
 </style>
