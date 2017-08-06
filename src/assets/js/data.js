@@ -79,10 +79,11 @@ textQuestion = Object.assign(textQuestion, questionBase);
 let blank = {
   type: 'blank',
   title: '将填空内容(*答案1 | 答案2*)放在半角星号括号中即可。如果答案不唯一，则用竖线分隔。',
+  titleData: [{type: 'text', data: '将填空内容'}, {type: 'blank', id: 'id', answers: ['答案1', '答案2']}, {type: 'text', data: '放在半角星号括号中即可。如果答案不唯一，则用竖线分隔。'}],
   description: '&lt;p&gt;填空题备注&lt;/p&gt;',
   assess: {
     answers: {
-      // id : [answer1, answer2] 每个id针对一个空格，后面的中括号中的第一个答案就是原本原文中的文本
+      id: ['答案1', '答案2']
     }
   },
   explanation: '&lt;p&gt;填空题解析&lt;&#x2f;p&gt;'

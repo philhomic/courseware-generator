@@ -120,10 +120,6 @@ function cleanHTML (htmlstring) {
   return sanitize(unescapeHTML(htmlstring), true);
 }
 
-function cleanHTMLCompletely (htmlstring) {
-  return sanitize(unescapeHTML(htmlstring), false);
-}
-
 function isNumber (n) {
   return toString.call(n) === '[object ' + Number + ']';
 }
@@ -141,6 +137,5 @@ export {
   storeToLocal,
   sanitize,
   cleanHTML,
-  cleanHTMLCompletely,
   isNumber
 };

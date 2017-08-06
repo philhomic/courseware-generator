@@ -7,7 +7,7 @@
 
 <script type="text/ecmascript-6">
   import editorTitleTextOnly from '../../block/editor/editor_titleTextOnly.vue';
-  import {clone, cleanHTML, escapeHTML} from '@/assets/js/util';
+  import {clone, cleanHTML, escapeHTML, unescapeHTML, guid} from '@/assets/js/util';
 
   let oldData;
   export default {
@@ -23,6 +23,37 @@
     mounted () {
       oldData = clone(this.data);
     },
+    computed: {
+      titleData () {
+        let src = unescapeHTML(this.$refs.title.innerText);
+        let re = /\(\*.*?\*\)/g;
+        let result = [];
+        let arr;
+        let startIndex = 0;
+        while (true) {
+          arr = re.exec(src);
+          if (!arr) {
+            result.push({
+              type: 'text',
+              data: src.substring(startIndex)
+            });
+            break;
+          }
+          result.push({
+            type: 'text',
+            data: src.substring(startIndex, arr.index)
+          });
+          result.push({
+            type: 'blank',
+            id: guid(),
+            answers: src.substring(arr.index, re.lastIndex).replace('(*', '').replace('*)', '').split('|').map(function (b) { return b.trim(); })
+          });
+
+          startIndex = re.lastIndex;
+        }
+        return result;
+      }
+    },
     methods: {
       cleanHTML (string) {
         return cleanHTML(string);
@@ -32,10 +63,19 @@
         let title = this.$refs.title;
         let description = this.$refs.description;
         let explanation = this.$refs.explanation;
+        let answers;
 
         newData.title = escapeHTML(title.innerText);
         newData.description = escapeHTML(description.innerHTML);
         newData.explanation = escapeHTML(explanation.innerHTML);
+        newData.titleData = clone(this.titleData);
+        answers = this.titleData.filter(function (item) {
+          return item.type === 'blank';
+        });
+        newData.assess.answers = {};
+        answers.forEach(function (answer) {
+          newData.assess.answers[answer.id] = answer.answers;
+        });
 
         this.$store.commit('updateBlock', {
           pageIndex: this.$parent.pageIndex,
