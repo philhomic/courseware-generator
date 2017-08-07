@@ -89,6 +89,7 @@
             outline: none
             cursor: text
             color: $question-number-color
+            font-weight: 700
           span.correctAnswer
             color: rgb(212, 90, 0)
             font-family: $block-title-font-family

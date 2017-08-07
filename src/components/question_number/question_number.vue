@@ -36,5 +36,4 @@
       font-size: $block-title-font-size
       z-index: 100
       font-family: $question-number-text-font-family
-      font-weight: 700
 </style>

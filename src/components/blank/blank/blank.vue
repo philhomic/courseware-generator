@@ -57,10 +57,6 @@
       hasContent: function (htmlString) {
         return hasContent(htmlString);
       },
-      // 判断选择正确，所有选择题型通用
-      selectCorrect: function (data, id) {
-        return data.assess.options[id] && data.assess.options[id].flag === true;
-      },
       handleFocus: function (id) {
         let input = document.getElementById(id);
         input.style.borderBottomColor = '#0A7DC0';
@@ -104,6 +100,7 @@
                 outline: none
                 cursor: text
                 color: $question-number-color
+                font-weight: 700
               span.correctAnswer
                 color: rgb(212, 90, 0)
                 font-family: $block-title-font-family
