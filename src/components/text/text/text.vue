@@ -10,7 +10,7 @@
         .description(v-if='hasContent(data.description)' v-html="unescapeHTML(data.description)")
         // 答案输入框
         .input(:class="{'submitted': submitted}")
-          span(contenteditable ref="userAnswer" @input="updateUserAnswer" class="userInput")
+          span(contenteditable ref="userAnswer" @input="updateUserAnswer" class="userInput" @focus="handleFocus" @blur="handleBlur" spellcheck="false")
           span(class="correctAnswer" v-if='submitted && data.assess.answers && !answerCorrect(data, userAnswer)') &nbsp;&nbsp;({{data.assess.answers[0]}})
         // 题目解析
         transition(name="slide")
@@ -54,6 +54,14 @@
         } else {
           userAnswer.style.display = 'inline';
         }
+      },
+      handleFocus: function () {
+        let userAnswer = this.$refs.userAnswer;
+        userAnswer.style.borderBottomColor = '#0A7DC0';
+      },
+      handleBlur: function () {
+        let userAnswer = this.$refs.userAnswer;
+        userAnswer.style.borderBottomColor = '#ddd';
       }
     },
     data () {
@@ -78,6 +86,9 @@
             border-bottom: 2px solid #eee
             line-height: $block-title-line-height
             font-size: $block-title-font-size
+            outline: none
+            cursor: text
+            color: $question-number-color
           span.correctAnswer
             color: rgb(212, 90, 0)
             font-family: $block-title-font-family

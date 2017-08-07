@@ -8,12 +8,10 @@
           span(v-for="item in data.titleData")
             span(v-if="item.type==='text'") {{item.data}}
             span.input(v-else-if="item.type==='blank'" :class="{'submitted': submitted}")
-              span(contenteditable ref="userAnswer" @input="updateUserAnswer(item.id)" class="userInput" :id="item.id")
+              span(contenteditable ref="userAnswer" @keypress="handleKeypress($event)" @input="updateUserAnswer(item.id)" class="userInput" :id="item.id" @focus="handleFocus(item.id)" @blur="handleBlur(item.id)" spellcheck="false")
               span(class="correctAnswer" v-if='submitted && data.assess.answers[item.id] && !answerCorrect(data, item.id)') &nbsp;&nbsp;({{data.assess.answers[item.id][0]}})&nbsp;&nbsp;
         // 题目备注
         .description(v-if='hasContent(data.description)' v-html="cleanHTML(data.description)")
-        // 题目选项
-        block blanks
         // 题目解析
         transition(name="slide")
           .explanation(v-if='hasContent(data.explanation) && submitted')
@@ -46,7 +44,7 @@
       },
       updateUserAnswer: function (id) {
         let userAnswer = document.getElementById(id);
-        this.$set(this.userAnswers, id, userAnswer.innerText);
+        this.$set(this.userAnswers, id, userAnswer.innerText.trim());
         if (userAnswer.clientWidth <= 60) {
           userAnswer.style.display = 'inline-block';
         } else {
@@ -62,6 +60,20 @@
       // 判断选择正确，所有选择题型通用
       selectCorrect: function (data, id) {
         return data.assess.options[id] && data.assess.options[id].flag === true;
+      },
+      handleFocus: function (id) {
+        let input = document.getElementById(id);
+        input.style.borderBottomColor = '#0A7DC0';
+      },
+      handleBlur: function (id) {
+        let input = document.getElementById(id);
+        input.style.borderBottomColor = '#ddd';
+      },
+      handleKeypress: function (ev) {
+        if (ev.keyCode === 13) {
+          ev.preventDefault();
+          return false;
+        }
       }
     },
     data () {
@@ -86,9 +98,12 @@
               span.userInput, span.correctAnswer
                 display: inline-block
                 min-width: 60px
-                border-bottom: 2px solid #eee
+                border-bottom: 2px solid #ddd
                 line-height: $block-title-line-height
                 font-size: $block-title-font-size
+                outline: none
+                cursor: text
+                color: $question-number-color
               span.correctAnswer
                 color: rgb(212, 90, 0)
                 font-family: $block-title-font-family

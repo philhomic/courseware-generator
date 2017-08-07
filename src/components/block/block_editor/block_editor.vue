@@ -1,5 +1,5 @@
 <template>
-  <div class="block-editor" draggable="true" @dragleave="dragLeave(blockIndex, $event)" @dragstart="dragStart(blockIndex, $event)" @dragover.stop="allowDrop($event)" @drop="drop(blockIndex, $event)">
+  <div class="block-editor">
     <div class="editor-wrapper" v-if="isEditing">
       <component  :is="block.type + 'Editor'" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block"  v-on:stopEditing="stopEditing"></component>
     </div>
@@ -11,7 +11,7 @@
           <li class="control_btn delete" @click="deleteBlock"><i class="icon-delete"></i></li>
         </ul>
       </div>
-      <div class="inner">
+      <div class="inner" draggable="true" @dragleave="dragLeave(blockIndex, $event)" @dragstart="dragStart(blockIndex, $event)" @dragover.stop="allowDrop($event)" @drop="drop(blockIndex, $event)">
         <component :is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block"></component>
       </div>
     </div>
