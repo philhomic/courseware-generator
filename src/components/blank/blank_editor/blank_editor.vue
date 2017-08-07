@@ -33,16 +33,21 @@
         while (true) {
           arr = re.exec(src);
           if (!arr) {
-            result.push({
-              type: 'text',
-              data: src.substring(startIndex)
-            });
+            if (startIndex !== src.length) {
+              result.push({
+                type: 'text',
+                data: src.substring(startIndex)
+              });
+            }
             break;
           }
-          result.push({
-            type: 'text',
-            data: src.substring(startIndex, arr.index)
-          });
+          if (arr.index !== 0) {
+            result.push({
+              type: 'text',
+              data: src.substring(startIndex, arr.index)
+            });
+          }
+
           result.push({
             type: 'blank',
             id: guid(),
