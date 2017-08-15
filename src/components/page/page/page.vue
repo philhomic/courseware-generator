@@ -2,7 +2,8 @@
   .page
     .header
     .blocks-wrapper(v-for="(block, blockIndex) in currentPage.blocks" :block="block" :blockIndex="blockIndex" :pageIndex="pageIndex" :key="blockIndex" ref="blockEditors")
-      <component :is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block" :submitted="isSubmitted"></component>
+      audioplayer
+      component(:is="block.type" v-bind:key="blockIndex" v-bind:blockIndex="blockIndex" :data="block" :submitted="isSubmitted")
     .footer(v-show="currentPage.blocks.length > 0")
       a(href="javascript:;" class="submitButton" @click="submitPage") 提 交
 </template>
@@ -14,6 +15,7 @@
   import description from '@/components/description/description/description';
   import textQuestion from '@/components/text/text/text';
   import blank from '@/components/blank/blank/blank';
+  import audioplayer from '@/components/media_player/audio_player/audio_player';
 
   export default {
     props: {
@@ -35,7 +37,8 @@
       selectsingle,
       description,
       textQuestion,
-      blank
+      blank,
+      audioplayer
     },
     methods: {
       clone (json) {
